@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Learning Projects</title>
+  <style>
+    /* ====== Global Style ====== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f0;                 /* warna lembut ala zen */
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #2f4f4f;
+      letter-spacing: 1px;
+    }
+    p.subtitle {
+      font-size: 1rem;
+      margin-bottom: 40px;
+      color: #555;
+    }
+
+    /* ====== Project List ====== */
+    ul {
+      list-style: none;
+      width: 100%;
+      max-width: 600px;
+    }
+    li {
+      margin-bottom: 18px;
+    }
+    a.project-link {
+      display: block;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: #ffffff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #333;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    a.project-link:hover {
+      background: #e6f0e6;                 /* efek hover hijau lembut */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* ====== Footer ====== */
+    footer {
+      margin-top: auto;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Learning Projects</h1>
+  <p class="subtitle">Daftar proyek belajar saya. Klik untuk membuka.</p>
+
+  <ul>
+    <!-- Ganti link di bawah sesuai folder proyek kamu -->
+    <li><a class="project-link" href="project1/">Project 1 – HTML Basics</a></li>
+    <li><a class="project-link" href="project2/">Project 2 – CSS Layout</a></li>
+    <li><a class="project-link" href="project3/">Project 3 – JavaScript Game</a></li>
+    <li><a class="project-link" href="project4/">Project 4 – API Fetch</a></li>
+    <li><a class="project-link" href="project5/">Project 5 – Responsive Design</a></li>
+  </ul>
+
+  <footer>
+    &copy; 2025 My Learning Journey
+  </footer>
+
+</body>
+</html>
