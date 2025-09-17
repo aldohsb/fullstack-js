@@ -1,0 +1,95 @@
+/* Zen Tasker — Japanese Zen Garden theme (2025) */
+:root {
+--bg: #f6faf7; /* pastel green-tinted white */
+--ink: #1f2a24; /* deep forest ink */
+--muted: #6b7d73; /* moss gray */
+--primary: #7bc89a; /* leaf green */
+--primary-ink: #0f1b16; /* contrast for primary */
+--card: #ffffff;
+--ring: #bcdcc9; /* ring highlight */
+--pebble: radial-gradient(circle at 20% 30%, #f2f7f3 0 30%, transparent 30%),
+radial-gradient(circle at 70% 60%, #edf5ef 0 28%, transparent 28%),
+radial-gradient(circle at 40% 80%, #eef6f1 0 22%, transparent 22%);
+}
+
+
+@media (prefers-color-scheme: dark) {
+:root {
+--bg: #0f1412;
+--ink: #e5f1ea;
+--muted: #98a9a1;
+--primary: #7bd4a4;
+--primary-ink: #08110d;
+--card: #121a17;
+--ring: #28433a;
+}
+}
+
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+margin: 0;
+font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Noto Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+color: var(--ink);
+background: var(--bg);
+background-image: var(--pebble);
+background-size: 480px 480px, 640px 640px, 560px 560px;
+background-attachment: fixed;
+}
+
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,1px,1px); white-space: nowrap; border: 0; }
+
+
+.zt-header { text-align: center; padding: 3rem 1rem 1rem; }
+.zt-title { margin: 0; font-weight: 800; letter-spacing: 0.4px; }
+.zt-sub { margin: 0.25rem 0 0; color: var(--muted); }
+
+
+.zt-main { display: grid; place-items: start center; padding: 1rem 1rem 4rem; }
+.zt-card {
+width: min(720px, 92vw);
+background: var(--card);
+border-radius: 16px;
+box-shadow: 0 10px 30px rgba(0,0,0,.06);
+border: 1px solid color-mix(in oklab, var(--ring), transparent 70%);
+padding: 1rem;
+}
+
+
+#new-task-form { display: grid; grid-template-columns: 1fr auto; gap: .75rem; margin-bottom: 1rem; }
+#new-task-input {
+padding: .875rem 1rem;
+border-radius: 12px;
+border: 1px solid color-mix(in oklab, var(--ring), transparent 55%);
+outline: none;
+}
+#new-task-input:focus {
+border-color: var(--primary);
+box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary), transparent 85%);
+}
+
+
+.zt-btn {
+padding: .875rem 1.1rem; border-radius: 12px; border: none; cursor: pointer;
+background: linear-gradient(180deg, color-mix(in oklab, var(--primary), white 25%), var(--primary));
+color: white; font-weight: 700;
+}
+.zt-btn:focus-visible { outline: 3px solid color-mix(in oklab, var(--primary), white 60%); outline-offset: 2px; }
+
+
+.zt-controls { display: flex; gap: .5rem; flex-wrap: wrap; margin: .25rem 0 1rem; }
+.zt-chip {
+padding: .5rem .8rem; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--ring), transparent 55%);
+background: color-mix(in oklab, var(--card), white 8%); color: var(--muted); cursor: pointer;
+}
+.zt-chip.is-active { color: var(--primary-ink); background: color-mix(in oklab, var(--primary), white 60%); border-color: var(--primary); }
+.zt-chip:focus-visible { outline: 3px solid color-mix(in oklab, var(--primary), white 60%); outline-offset: 2px; }
+
+
+.zt-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+.zt-item {
+display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .75rem;
+padding: .65rem .75rem; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--ring), transparent 55%);
+.zt-link:hover { color: var(--ink); }

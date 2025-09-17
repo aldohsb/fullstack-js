@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zen Tasker</title>
+<meta name="color-scheme" content="light dark" />
+<link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+<header class="zt-header" role="banner">
+<h1 class="zt-title">Zen Tasker</h1>
+<p class="zt-sub">Find your flow. One task at a time.</p>
+</header>
+
+
+<main class="zt-main" role="main">
+<section class="zt-card" aria-labelledby="todo-heading">
+<h2 id="todo-heading" class="sr-only">To‑Do</h2>
+
+
+<form id="new-task-form" autocomplete="off" aria-label="Add new task">
+<input id="new-task-input" name="title" type="text" placeholder="Add a calm, clear task…" required minlength="1" maxlength="120" />
+<button class="zt-btn" type="submit" aria-label="Add task">Add</button>
+</form>
+
+
+<div class="zt-controls" role="group" aria-label="Filters">
+<button data-filter="all" class="zt-chip is-active" aria-pressed="true">All</button>
+<button data-filter="active" class="zt-chip" aria-pressed="false">Active</button>
+<button data-filter="completed" class="zt-chip" aria-pressed="false">Completed</button>
+</div>
+
+
+<ul id="task-list" class="zt-list" role="list"></ul>
+
+
+<footer class="zt-footer">
+<span id="items-left" aria-live="polite">0 items left</span>
+<button id="clear-completed" class="zt-link">Clear completed</button>
+</footer>
+</section>
+</main>
+
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
