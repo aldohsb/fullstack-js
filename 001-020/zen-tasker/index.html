@@ -1,48 +1,102 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zen Tasker</title>
-<meta name="color-scheme" content="light dark" />
-<link rel="stylesheet" href="./src/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Tasker - Japanese Zen Garden To-Do</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/zen-theme.css">
 </head>
 <body>
-<header class="zt-header" role="banner">
-<h1 class="zt-title">Zen Tasker</h1>
-<p class="zt-sub">Find your flow. One task at a time.</p>
-</header>
+    <div class="zen-container">
+        <!-- Header dengan tema zen -->
+        <header class="zen-header">
+            <div class="zen-circle"></div>
+            <h1 class="zen-title">禅 Zen Tasker</h1>
+            <p class="zen-subtitle">Find peace in productivity</p>
+            <div class="zen-stones">
+                <div class="stone stone-1"></div>
+                <div class="stone stone-2"></div>
+                <div class="stone stone-3"></div>
+            </div>
+        </header>
 
+        <!-- Task Input Form -->
+        <section class="task-input-section">
+            <form class="zen-form" id="taskForm">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        placeholder="Enter your mindful task..." 
+                        class="zen-input"
+                        required
+                        maxlength="100"
+                    >
+                    <select id="taskPriority" class="zen-select">
+                        <option value="low">Low Priority</option>
+                        <option value="medium" selected>Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <button type="submit" class="zen-button zen-button-primary">
+                        <span class="button-text">Add Task</span>
+                        <span class="button-ripple"></span>
+                    </button>
+                </div>
+            </form>
+        </section>
 
-<main class="zt-main" role="main">
-<section class="zt-card" aria-labelledby="todo-heading">
-<h2 id="todo-heading" class="sr-only">To‑Do</h2>
+        <!-- Filter Controls -->
+        <section class="filter-section">
+            <div class="zen-filters">
+                <button class="filter-btn active" data-filter="all">All Tasks</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="high">High Priority</button>
+            </div>
+            <div class="task-stats">
+                <span class="stat" id="totalTasks">0 tasks</span>
+                <span class="stat" id="completedTasks">0 completed</span>
+                <span class="stat" id="activeTasks">0 active</span>
+            </div>
+        </section>
 
+        <!-- Tasks Container -->
+        <main class="tasks-container">
+            <div class="zen-garden">
+                <div class="garden-lines"></div>
+                <ul id="tasksList" class="tasks-list">
+                    <!-- Tasks akan ditambahkan secara dinamis -->
+                </ul>
+                
+                <!-- Empty state -->
+                <div class="empty-state" id="emptyState">
+                    <div class="zen-meditation">
+                        <div class="meditation-circle"></div>
+                        <h3>Your mind is clear</h3>
+                        <p>Add a task to begin your mindful journey</p>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-<form id="new-task-form" autocomplete="off" aria-label="Add new task">
-<input id="new-task-input" name="title" type="text" placeholder="Add a calm, clear task…" required minlength="1" maxlength="120" />
-<button class="zt-btn" type="submit" aria-label="Add task">Add</button>
-</form>
+        <!-- Footer -->
+        <footer class="zen-footer">
+            <p class="zen-quote">"The mind is everything. What you think you become."</p>
+        </footer>
+    </div>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
-<div class="zt-controls" role="group" aria-label="Filters">
-<button data-filter="all" class="zt-chip is-active" aria-pressed="true">All</button>
-<button data-filter="active" class="zt-chip" aria-pressed="false">Active</button>
-<button data-filter="completed" class="zt-chip" aria-pressed="false">Completed</button>
-</div>
-
-
-<ul id="task-list" class="zt-list" role="list"></ul>
-
-
-<footer class="zt-footer">
-<span id="items-left" aria-live="polite">0 items left</span>
-<button id="clear-completed" class="zt-link">Clear completed</button>
-</footer>
-</section>
-</main>
-
-
-<script type="module" src="./src/main.js"></script>
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/taskManager.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/zenAnimations.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
