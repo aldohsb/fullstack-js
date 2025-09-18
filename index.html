@@ -1,182 +1,402 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyek Fullstack JS - My Learning Projects</title>
-<style>
-/* ===========================
-   Zen Color Palette & Theme
-   =========================== */
-:root {
-  /* Zen Color Palette - Pastel Green Tones */
-  --zen-primary: #7fb069;
-  --zen-primary-light: #9bc85a;
-  --zen-primary-dark: #5d8c4b;
-  --zen-secondary: #a7c957;
-  --zen-accent: #f2e8cf;
-  --zen-sage: #dde5b6;
-  --zen-stone: #6a7c5b;
-  --zen-white: #fefffe;
-  --zen-black: #2d3a2e;
-  --zen-gray: #4a5d4f;
-  --zen-light-gray: #e8f5e8;
-  --zen-border: #c7d2cc;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>200 Proyek Pembelajaran Fullstack JS</title>
+     <link rel="stylesheet" href="styles.css">
 
-  /* Priority Colors */
-  --priority-low: #a7c957;
-  --priority-medium: #7fb069;
-  --priority-high: #bc5a45;
-
-  /* Shadows */
-  --zen-shadow: 0 4px 20px rgba(127, 176, 105, 0.15);
-  --zen-shadow-light: 0 2px 10px rgba(127, 176, 105, 0.1);
-  --zen-shadow-strong: 0 8px 30px rgba(127, 176, 105, 0.2);
-
-  /* Typography */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-japanese: 'Noto Sans JP', sans-serif;
-
-  /* Transitions */
-  --zen-transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  --zen-transition-fast: all 0.15s ease-out;
-}
-
-/* ===========================
-   Reset & Base
-   =========================== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--font-primary);
-  background: var(--zen-light-gray);
-  color: var(--zen-black);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* ===========================
-   Decorative Circles Animation
-   =========================== */
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(127, 176, 105, 0.2);
-  animation: float 12s ease-in-out infinite;
-}
-.circle:nth-child(1) { width: 180px; height: 180px; top: 20%; left: 10%; animation-delay: 0s; }
-.circle:nth-child(2) { width: 260px; height: 260px; top: 60%; left: 70%; animation-delay: 3s; }
-.circle:nth-child(3) { width: 150px; height: 150px; top: 75%; left: 25%; animation-delay: 6s; }
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-/* ===========================
-   Zen Stones
-   =========================== */
-.stone {
-  position: absolute;
-  background: var(--zen-stone);
-  border-radius: 50%;
-  opacity: 0.6;
-  box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
-}
-.stone1 { width: 90px; height: 40px; bottom: 30px; left: 20%; transform: rotate(8deg); }
-.stone2 { width: 110px; height: 50px; bottom: 20px; left: 38%; transform: rotate(-6deg); }
-.stone3 { width: 90px; height: 45px; bottom: 25px; left: 56%; transform: rotate(5deg); }
-.stone4 { width: 70px; height: 35px; bottom: 15px; left: 72%; transform: rotate(-5deg); }
-
-/* ===========================
-   Header
-   =========================== */
-h1 {
-  font-size: 2.5rem;
-  color: var(--zen-primary-dark);
-  margin-bottom: 12px;
-  text-align: center;
-  letter-spacing: 1px;
-}
-p.subtitle {
-  font-size: 1.1rem;
-  color: var(--zen-gray);
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-/* ===========================
-   Project Grid
-   =========================== */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1000px;
-  z-index: 1;
-}
-.project-box {
-  background: var(--zen-white);
-  border: 1px solid var(--zen-border);
-  border-radius: 16px;
-  padding: 24px 18px;
-  text-align: center;
-  text-decoration: none;
-  color: var(--zen-black);
-  font-weight: 500;
-  box-shadow: var(--zen-shadow-light);
-  transition: var(--zen-transition);
-}
-.project-box:hover {
-  background: var(--zen-accent);
-  transform: translateY(-5px);
-  box-shadow: var(--zen-shadow-strong);
-  border-color: var(--zen-primary-light);
-}
-
-/* ===========================
-   Footer
-   =========================== */
-footer {
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: var(--zen-gray);
-  text-align: center;
-  z-index: 1;
-}
-</style>
 </head>
 <body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
 
-<!-- Floating circles -->
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
+    <div class="zen-bg"></div>
+    
+    <div class="zen-decorations">
+        <!-- Zen Garden Pebbles (Mix of Grey and Brown) -->
+        <div class="zen-pebble"></div>
+        <div class="zen-pebble"></div>
+        <div class="zen-pebble"></div>
+        <div class="zen-pebble"></div>
+        <div class="zen-pebble"></div>
+        <div class="zen-pebble"></div>
+        
+        <!-- Zen Garden Raked Lines -->
+        <div class="zen-lines"></div>
+        <div class="zen-lines"></div>
+        <div class="zen-lines"></div>
+        <div class="zen-lines brown"></div>
+        
+        <!-- Zen Circles -->
+        <div class="zen-circle large"></div>
+        <div class="zen-circle medium"></div>
+        <div class="zen-circle small"></div>
+        <div class="zen-circle brown"></div>
+    </div>
 
-<!-- Zen stones -->
+    <header>
+        <h1>Fullstack JS Garden</h1>
+        <p class="subtitle">200 Proyek Pembelajaran Fullstack JS</p>
+    </header>
+
+    <div class="filter-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Semua Proyek</button>
+            <button class="filter-btn" data-filter="1-20">Proyek 1-20</button>
+            <button class="filter-btn" data-filter="21-40">Proyek 21-40</button>
+            <button class="filter-btn" data-filter="41-60">Proyek 41-60</button>
+            <button class="filter-btn" data-filter="61-80">Proyek 61-80</button>
+            <button class="filter-btn" data-filter="81-100">Proyek 81-100</button>
+            <button class="filter-btn" data-filter="101-120">Proyek 101-120</button>
+            <button class="filter-btn" data-filter="121-140">Proyek 121-140</button>
+            <button class="filter-btn" data-filter="141-160">Proyek 141-160</button>
+            <button class="filter-btn" data-filter="161-180">Proyek 161-180</button>
+            <button class="filter-btn" data-filter="181-200">Proyek 181-200</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Projects will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Project data
+        const projects = [
+            { title: "Zen Tasker", desc: "Todo List Interaktif Bertema Japanese Zen Garden", link: "001-020/zen-tasker/" },
+            { title: "Aurora Slider", desc: "Carousel Gambar Bertema Nordic Aurora" },
+            { title: "Rainforest Weather", desc: "Widget Cuaca Dummy Bertema Hutan Tropis" },
+            { title: "Retrocalc 80s", desc: "Kalkulator Bertema Arcade Retro Neon" },
+            { title: "Quiz Carnival", desc: "Aplikasi Kuis Bertema Festival Karnaval" },
+            { title: "Countdown Sakura", desc: "Countdown Peluncuran Event Bertema Bunga Sakura Jepang" },
+            { title: "Modal Noir", desc: "Modal Popup Bertema Film Noir" },
+            { title: "Drag Dune Gallery", desc: "Galeri Drag & Drop Bertema Padang Pasir Dune" },
+            { title: "Markdown Streetart", desc: "Previewer Markdown Bertema Graffiti Street Art" },
+            { title: "Tip Barista", desc: "Kalkulator Tip Bertema Kedai Kopi Modern" },
+            { title: "Currency Safari", desc: "Konversi Mata Uang Dummy Bertema African Safari" },
+            { title: "Sticky Ocean Notes", desc: "Catatan Tempel Bertema Lautan Tropis" },
+            { title: "Pomodoro Bonsai", desc: "Timer Fokus Bertema Taman Bonsai Minimalist" },
+            { title: "Unit Converter Bauhaus", desc: "Konverter Satuan Bertema Bauhaus Modernist" },
+            { title: "Color Picker Vaporwave", desc: "Color Picker Bertema Vaporwave Pastel" },
+            { title: "Expense Tracker Farmer", desc: "Pelacak Pengeluaran Bertema Farmers Market" },
+            { title: "Recipe Finder K-Pop", desc: "Pencari Resep Bertema K-Pop Candy Color" },
+            { title: "Shortcut Cyberpunk", desc: "Overlay Shortcut Keyboard Bertema Cyberpunk City" },
+            { title: "Lazyload Arctic", desc: "Lazy Loading Gambar Bertema Arctic Glacier" },
+            { title: "Form Validator Steampunk", desc: "Validasi Form Bertema Steampunk Brass" },
+            { title: "Audio Jazz Lounge", desc: "Pemutar Musik Lokal Bertema Jazz Lounge 1950s" },
+            { title: "Memory Pixelart", desc: "Permainan Memory Bertema 8-Bit Pixel Arcade" },
+            { title: "Tic Tac Sushi", desc: "Tic Tac Toe Bertema Sushi Bar" },
+            { title: "Watchlist Cinema Noir", desc: "Daftar Film Favorit Bertema Classic Cinema" },
+            { title: "Gif Festival Search", desc: "Pencarian Gif Dummy Bertema Music Festival" },
+            { title: "Clipboard Origami", desc: "Manajer Clipboard Bertema Origami Jepang" },
+            { title: "Password Glacier", desc: "Generator Password Bertema Ice Glacier Blue" },
+            { title: "News Desert Reader", desc: "Pembaca Berita Json Bertema Desert Mirage" },
+            { title: "Kanban Neon Jungle", desc: "Kanban Board Lokal Bertema Neon Rainforest" },
+            { title: "Qr Carnival Glow", desc: "Generator Qr Code Bertema Street Carnival Neon" },
+            { title: "Tailwind Aurora Landing", desc: "Landing Page Modern Bertema Aurora Sky" },
+            { title: "Bootstrap Café Blog", desc: "Blog Multi Kolom Bertema European Café" },
+            { title: "Minimalist Navbar Glass", desc: "Responsive Navbar Bertema Glassmorphism Minimalist" },
+            { title: "Pricing Sunset", desc: "Pricing Table Bertema Sunset Beach" },
+            { title: "Login Nordic Ice", desc: "Form Login Bertema Nordic Ice Blue" },
+            { title: "Dashboard Cyber Grid", desc: "Dashboard Skeleton Bertema Cyber Grid Neon" },
+            { title: "Product Cards Artdeco", desc: "Kartu Produk Bertema Art Deco Glam" },
+            { title: "Timeline Vintage", desc: "Progress Steps Bertema Vintage Newspaper" },
+            { title: "Testimonial Tropical", desc: "Slider Testimoni Bertema Tropical Island" },
+            { title: "Admin Table Monochrome", desc: "Tabel Admin Bertema Monochrome Elegant" },
+            { title: "Email Retro Stamp", desc: "Template Email Bertema Retro Postal Stamp" },
+            { title: "Product Detail Zen Clay", desc: "Halaman Produk Bertema Japanese Clay Minimal" },
+            { title: "Checkout Pop Art", desc: "Stepper Checkout Bertema Pop Art Comic" },
+            { title: "Analytics Crystal", desc: "Kpi Card Bertema Crystal Glass" },
+            { title: "Blog Noir Page", desc: "Halaman Artikel Bertema Paris Midnight Noir" },
+            { title: "Contact Rainy City", desc: "Form Kontak Bertema Rainy Cityscape" },
+            { title: "Landing Candy Saas", desc: "Landing Saas Bertema Candy Pastel" },
+            { title: "Portfolio Indigo Minimal", desc: "Portfolio Bertema Indigo Modern Minimal" },
+            { title: "Auth Jungle Modal", desc: "Modal Login/Register Bertema Amazon Jungle" },
+            { title: "Newsletter Coral Sign-up", desc: "Form Newsletter Bertema Coral Reef" },
+            { title: "Counter Zenflow", desc: "Aplikasi Counter Bertema Zen Waterfall" },
+            { title: "Todo Bamboo", desc: "To-do List Bertema Bamboo Forest" },
+            { title: "Quote Mosaic", desc: "Generator Kutipan Bertema Mosaic Art" },
+            { title: "Movie Finder Neon", desc: "Pencari Film Bertema Tokyo Neon District" },
+            { title: "Weather Mistylake", desc: "Cuaca Real-time Bertema Misty Lake" },
+            { title: "Palette Artisan", desc: "Pembuat Palet Warna Bertema Artisan Studio" },
+            { title: "Notes Origami", desc: "Catatan Markdown Bertema Origami Minimal" },
+            { title: "Expense Tracker Retrobank", desc: "Pelacak Keuangan Bertema Retro Bank 1960s" },
+            { title: "Pokedex Pixel", desc: "Pokedex Bertema Pixel 8-bit" },
+            { title: "Recipe Finder Farmhouse", desc: "Cari Resep Bertema Farm House Kitchen" },
+            { title: "Image Gallery Glass", desc: "Galeri Foto Bertema Glassmorphism Minimal" },
+            { title: "Countdown Sunset", desc: "Hitung Mundur Bertema Sunset Tropical" },
+            { title: "Markdown Espresso", desc: "Editor Markdown Bertema Espresso Café" },
+            { title: "Currency Arctic", desc: "Konverter Kurs Bertema Arctic Blue Ice" },
+            { title: "Kanban Urban Loft", desc: "Kanban Board Bertema Industrial Loft" },
+            { title: "Pomodoro Garden", desc: "Timer Fokus Bertema Botanical Garden" },
+            { title: "Shopping Cart Candypop", desc: "Keranjang Belanja Bertema Candy Pop Pastel" },
+            { title: "Auth Ocean Breeze", desc: "Form Login Bertema Ocean Breeze" },
+            { title: "Music Player Disco", desc: "Pemutar Musik Bertema 70s Disco Ball" },
+            { title: "Blog Router Antique", desc: "Blog Dengan Routing Bertema Antique Library" },
+            { title: "Photo Collage Bohemian", desc: "Kolase Foto Bertema Bohemian Pattern" },
+            { title: "Meditation Timer Dawn", desc: "Timer Meditasi Bertema Sunrise Pastel" },
+            { title: "Travel Wishlist Alpine", desc: "Daftar Destinasi Bertema Alpine Mountain" },
+            { title: "Event Planner Fiesta", desc: "Perencana Acara Bertema Spanish Fiesta" },
+            { title: "Memory Game Candyretro", desc: "Permainan Memory Bertema Candy Retro Arcade" },
+            { title: "Theme Switcher Auroranight", desc: "Pengaturan Tema Bertema Aurora Night Sky" },
+            { title: "Redux Shopping Mall", desc: "Keranjang Belanja Bertema Luxury Mall" },
+            { title: "Blog Cms Tropical", desc: "Cms Dummy Bertema Tropical Rainforest" },
+            { title: "React Query Metro", desc: "Data Fetcher Bertema Metro Subway" },
+            { title: "Infinite Scroll Desert", desc: "Feed Endless Bertema Sahara Desert" },
+            { title: "Charts Dashboard Crystalblue", desc: "Dashboard Kpi Bertema Crystal Blue Glass" },
+            { title: "Form Wizard Retrowave", desc: "Multi-step Form Bertema Retrowave Purple Neon" },
+            { title: "File Uploader Origamisky", desc: "Upload File Bertema Origami Sky Paper" },
+            { title: "Auth Flow Noircity", desc: "Alur Login Bertema Noir City Night" },
+            { title: "Websocket Chat Festival", desc: "Chat Realtime Bertema Music Festival Glow" },
+            { title: "Accessibility Audit Zen", desc: "Audit Aksesibilitas Bertema Zen Minimal Pastel" },
+            { title: "Performance Profiler Chrome", desc: "Profiling Performa Bertema Chrome Devtools Style" },
+            { title: "React I18n Globalfest", desc: "Multi Bahasa Bertema World Festival" },
+            { title: "Data Grid Skyline", desc: "Data Grid Bertema City Skyline" },
+            { title: "Component Library Clay", desc: "Design System Bertema Handmade Clay" },
+            { title: "State Machines Oceandeep", desc: "State Machine Bertema Deep Ocean Blue" },
+            { title: "Drag Builder Bauhaus", desc: "Layout Builder Bertema Bauhaus Geometric" },
+            { title: "Offline First Alpine", desc: "Offline Caching Bertema Alpine Snow" },
+            { title: "Testing React Arcade", desc: "Unit Test Bertema Arcade Retro" },
+            { title: "Animation Bohoflow", desc: "Motion Ui Bertema Bohemian Flow Pastel" },
+            { title: "Graph Filter Graffiti", desc: "Filter Data Bertema Urban Graffiti" },
+            { title: "Audio Visualizer Neonbeat", desc: "Visualisasi Audio Bertema Neon Beat Club" },
+            { title: "Emoji Picker Manga", desc: "Picker Emoji Bertema Manga Pop" },
+            { title: "Timeline Vintagevinyl", desc: "Timeline Events Bertema Vintage Vinyl Records" },
+            { title: "Heatmap Jungle", desc: "Visualisasi Heatmap Bertema Amazon Jungle" },
+            { title: "Nordiclake Journal", desc: "Blog Statis Bertema Nordic Lake Minimal" },
+            { title: "Urbanglass Market", desc: "E-commerce Mock Bertema Urban Glassmorphism" },
+            { title: "Mangapop Gallery", desc: "Optimalisasi Gambar Bertema Manga Pop Art" },
+            { title: "Carnivalapi Hub", desc: "Api Routes Bertema Colorful Carnival" },
+            { title: "Safarisunset Isr", desc: "Demo Incremental Static Regeneration Tema African Safari Sunset" },
+            { title: "Bambooauth", desc: "Sistem Autentikasi Bertema Bamboo Forest Calm" },
+            { title: "Worldfest Portal", desc: "Situs Multi Bahasa Bertema World Festival Flags" },
+            { title: "Retrowave Cms", desc: "Frontend Headless Cms Bertema Retrowave Neon" },
+            { title: "Crystalseo Toolkit", desc: "Toolkit Seo Bertema Crystal Clear Ui" },
+            { title: "Arabianforms", desc: "Server Actions Form Bertema Arabian Night Desert" },
+            { title: "Farmhouse Folio", desc: "Portfolio Bertema Rustic Farmhouse" },
+            { title: "Bauhaus Pixels", desc: "Galeri Seni Bertema Bauhaus Geometry" },
+            { title: "Zengarden Landing", desc: "Landing Page Bertema Zen Garden Minimal" },
+            { title: "Arcticblue Pricing", desc: "Pricing Page Bertema Arctic Blue Ice" },
+            { title: "Cybergrid Dashboard", desc: "Dashboard Bertema Cyberpunk Neon City" },
+            { title: "Pixelarcade Blog", desc: "Blog Bertema Pixel Arcade Retro" },
+            { title: "Indieframe", desc: "Portfolio Film Bertema Indie Film Noir" },
+            { title: "Jungleevent", desc: "Event Listing Bertema Amazon Jungle" },
+            { title: "Coralwave Pwa", desc: "Progressive Web App Bertema Coral Reef Underwater" },
+            { title: "Streetwear Storefront", desc: "Storefront Bertema Streetwear Fashion" },
+            { title: "Zennote Api", desc: "Rest Api Catatan Bertema Zen Minimalist" },
+            { title: "Glasswave Auth", desc: "Auth Jwt Bertema Glasswave Futuristic" },
+            { title: "Retroshort", desc: "Url Shortener Bertema Retro 80s Arcade" },
+            { title: "Seafoam Upload", desc: "File Upload Service Bertema Seafoam Green" },
+            { title: "Tropimail", desc: "Email Api Bertema Tropical Island" },
+            { title: "Neonbeat Chat", desc: "Chat Server Bertema Neon Beat Club" },
+            { title: "Snowpeak Limit", desc: "Rate Limiter Bertema Snow Mountain" },
+            { title: "Marblepay Webhooks", desc: "Webhook Pembayaran Bertema Marble White Gold" },
+            { title: "Vintagelogger", desc: "Logging Metrics Bertema Vintage Terminal Green" },
+            { title: "Jungletoggle", desc: "Feature Flag Server Bertema Jungle Vine" },
+            { title: "Skylineguard", desc: "Role-based Access Control Bertema City Skyline" },
+            { title: "Saharacron", desc: "Cron Jobs Service Bertema Sahara Desert" },
+            { title: "Carneliansearch", desc: "Search Api Bertema Carnelian Red" },
+            { title: "Crystalresize", desc: "Image Processing Api Bertema Crystal Glacier" },
+            { title: "Cafeblog Backend", desc: "Blog Backend Bertema European Café" },
+            { title: "Origamitenant", desc: "Multi-tenant Api Bertema Origami Paper White" },
+            { title: "Neonmetric", desc: "Feature Analytics Bertema Neon Data Grid" },
+            { title: "Pixelshare", desc: "File Sharing Api Bertema Pixel Grid Retro" },
+            { title: "Coralnotify", desc: "Notification Service Bertema Coral Reef Orange" },
+            { title: "Alpinegraph", desc: "Graphql Server Bertema Alpine Snow Blue" },
+            { title: "Jazzstream", desc: "Realtime Dashboard Bertema Smooth Jazz Lounge" },
+            { title: "Retroauth Micro", desc: "Auth Microservice Bertema Retrowave Magenta" },
+            { title: "Mangasearch", desc: "Mini Search Engine Bertema Manga Comic" },
+            { title: "Glassgallery", desc: "Api Galeri Gambar Bertema Glass Minimal" },
+            { title: "Bambooblog", desc: "Microservice Blog Bertema Bamboo Green" },
+            { title: "Nightcrystal Metrics", desc: "Metrics Dashboard Bertema Crystal Night Sky" },
+            { title: "Tropicdn", desc: "Image Cdn Bertema Tropical Lagoon" },
+            { title: "Vinylbus", desc: "Event Bus Bertema Vintage Vinyl Records" },
+            { title: "Arcticzip", desc: "File Compression Service Bertema Arctic Glacier" },
+            { title: "Cybergate Api", desc: "Api Gateway Bertema Cyber Grid Neon" },
+            { title: "Orbitsocial", desc: "Platform Sosial Mini Tema Cosmic Minimal Futuristic" },
+            { title: "Stripecart", desc: "E-commerce Lengkap Bertema Modern Pastel Boutique" },
+            { title: "Jobsphere", desc: "Job Board Pern Bertema Urban Skyline Professional" },
+            { title: "Prismapress", desc: "Blog Cms Next.Js + Prisma Bertema Minimal Clay" },
+            { title: "Apollonotes", desc: "Crud Artikel Graphql Bertema Neo-brutalism Color Pop" },
+            { title: "Chatnova", desc: "Chat Realtime Bertema Aurora Neon Gradient" },
+            { title: "Streambox", desc: "Video Streaming Platform Bertema Cinematic Dark Glass" },
+            { title: "Multiorg Saas", desc: "Multi-tenant Saas Starter Bertema Corporate Blue Modern" },
+            { title: "Tasksync", desc: "React Native Todo Sync Bertema Zen Garden Mobile" },
+            { title: "Expenseflow", desc: "React Native Expense Tracker Bertema Gradient Mint Finance" },
+            { title: "Shopstripe", desc: "React Native Shop Dengan Stripe Bertema Pop Art Retail" },
+            { title: "Fitjourney", desc: "Fitness Tracker Bertema Active Gradient Sunrise" },
+            { title: "Hotelease", desc: "Sistem Booking Hotel Bertema Luxury Minimal Gold" },
+            { title: "Recipeshare", desc: "Pwa Berbagi Resep Bertema Farm-to-table Organic" },
+            { title: "Collabdocs", desc: "Realtime Document Collaboration Bertema Glass Office Modern" },
+            { title: "Calllink", desc: "Video Call App Bertema Minimal Sky Blue" },
+            { title: "Artai Studio", desc: "Ai Image Generator Bertema Digital Art Space" },
+            { title: "Cryptopulse", desc: "Crypto Price Tracker Bertema Dark Neon Fintech" },
+            { title: "Tunestream", desc: "Music Streaming Clone Bertema Indie Music Lounge" },
+            { title: "Multilingua Blog", desc: "Blog Multibahasa Bertema World Culture Mix" },
+            { title: "Iotdash", desc: "Iot Dashboard Bertema Industrial Steel Minimal" },
+            { title: "Tickethive", desc: "Sistem Tiket Event Bertema Honeycomb Gradient" },
+            { title: "Learnspace", desc: "Online Learning Platform Bertema Clean Academic Blue" },
+            { title: "Forumconnect", desc: "Forum App Bertema Classic Web 2.0 Revival" },
+            { title: "Microcart", desc: "E-commerce Microservices Bertema Modern Retail Grid" },
+            { title: "Lambdablog", desc: "Serverless Blog Bertema Minimal Arctic White" },
+            { title: "Photospark", desc: "Photo Sharing React Native Bertema Color Splash Gradient" },
+            { title: "Heartmatch", desc: "Dating App Clone Bertema Romantic Pastel Pink" },
+            { title: "Kanbanpro", desc: "Kanban Tim Bertema Productivity Minimal Blue" },
+            { title: "Promptly", desc: "Chatgpt Client Bertema Clean Ai Gradient" },
+            { title: "Findash", desc: "Finance Dashboard Bertema Dark Crystal Charts" },
+            { title: "Ridewave", desc: "Ride Sharing Mini-uber Bertema Ocean Blue Map" },
+            { title: "Talentai", desc: "Job Matching Ai Bertema Futuristic Gradient Glow" },
+            { title: "Stockwise", desc: "Inventory Management System Bertema Industrial Grey Grid" },
+            { title: "Votechain", desc: "E-voting Platform Bertema Blockchain Dark Mode" },
+            { title: "Fundflow", desc: "Crowdfunding App Bertema Gradient Aqua Finance" },
+            { title: "Adminsphere", desc: "Blog Cms + Admin Panel Bertema Corporate Steel Blue" },
+            { title: "Podcloud", desc: "Podcast Hosting Platform Bertema Cloud Gradient Purple" },
+            { title: "Whiteboardlive", desc: "Realtime Whiteboard Bertema Clean Sketch Minimal" },
+            { title: "Voicelink", desc: "Voice Chat App Bertema Soft Gradient Mint" },
+            { title: "Healthmate", desc: "Health Tracker Bertema Wellness Pastel Calm" },
+            { title: "Dineeasy", desc: "Restaurant Ordering System Bertema Modern Foodie Palette" },
+            { title: "Tripplanner", desc: "Travel Planner Bertema Adventure Earth Tones" },
+            { title: "Interviewai", desc: "Ai Interview Prep Bertema Professional Gradient Steel" },
+            { title: "Soundcollab", desc: "Music Collaboration Platform Bertema Studio Dark Neon" },
+            { title: "Smarthive", desc: "Smart Home Dashboard Bertema Honeycomb Yellow Black" },
+            { title: "Librashelf", desc: "E-library System Bertema Calm Pastel Library" },
+            { title: "Arshopper", desc: "Ar Shopping Demo Bertema Ar Futuristic White" },
+            { title: "Coursemart", desc: "Video Course Marketplace Bertema Elegant Dark Gradient" },
+            { title: "Omniapp", desc: "Super App Container Bertema Colorful Modular Ui" }
+        ];
+
+        // Generate filter ranges
+        function getFilterRange(index) {
+            const ranges = [
+                "1-20", "21-40", "41-60", "61-80", "81-100",
+                "101-120", "121-140", "141-160", "161-180", "181-200"
+            ];
+            return ranges[Math.floor(index / 20)];
+        }
+
+        // Generate all projects
+        function generateProjects() {
+            const grid = document.getElementById('projectsGrid');
+            
+            projects.forEach((project, index) => {
+                const projectNumber = index + 1;
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.setAttribute('data-range', getFilterRange(index));
+                
+                card.innerHTML = `
+                    <div class="project-number">${projectNumber.toString().padStart(2, '0')}</div>
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.desc}</p>
+                    <a href="${project.link}" class="project-link">Lihat</a>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        function setupFilters() {
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const filter = button.getAttribute('data-filter');
+                    const projectCards = document.querySelectorAll('.project-card');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all') {
+                            card.classList.remove('hidden');
+                        } else {
+                            const cardRange = card.getAttribute('data-range');
+                            if (cardRange === filter) {
+                                card.classList.remove('hidden');
+                            } else {
+                                card.classList.add('hidden');
+                            }
+                        }
+                    });
+
+                    // Re-trigger animations for visible cards
+                    setTimeout(() => {
+                        const visibleCards = document.querySelectorAll('.project-card:not(.hidden)');
+                        visibleCards.forEach((card, index) => {
+                            card.style.animation = 'none';
+                            card.offsetHeight; // Trigger reflow
+                            card.style.animation = `slideInUp 0.6s ease-out ${index * 0.1}s forwards`;
+                        });
+                    }, 50);
+                });
+            });
+        }
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollProgress + '%';
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateProjects();
+            setupFilters();
+            
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Parallax effect for zen decorations
+        window.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            const mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+            
+            const pebbles = document.querySelectorAll('.zen-pebble');
+            const circles = document.querySelectorAll('.zen-circle');
+            const lines = document.querySelectorAll('.zen-lines');
+            
+            pebbles.forEach((pebble, index) => {
+                const speed = (index + 1) * 0.15;
+                const x = mouseX * speed * 2;
+                const y = mouseY * speed * 2;
+                pebble.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+            
+            circles.forEach((circle, index) => {
+                const speed = (index + 1) * 0.2;
+                const x = mouseX * speed * 1.5;
+                const y = mouseY * speed * 1.5;
+                circle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
 
 
-<h1>Proyek Fullstack JS</h1>
-<p class="subtitle">Klik salah satu proyek untuk membuka</p>
-
-<div class="projects">
-  <!-- Ganti link sesuai folder proyek -->
-  <a class="project-box" href="project1/">Project 1 – HTML Basics</a>
-  <a class="project-box" href="project2/">Project 2 – CSS Layout</a>
-  <a class="project-box" href="project3/">Project 3 – JavaScript Game</a>
-  <a class="project-box" href="project4/">Project 4 – API Fetch</a>
-  <a class="project-box" href="project5/">Project 5 – Responsive Design</a>
-  <a class="project-box" href="project6/">Project 6 – Form Validation</a>
-  <a class="project-box" href="project7/">Project 7 – Animation Practice</a>
-  <a class="project-box" href="project8/">Project 8 – LocalStorage App</a>
-  <a class="project-box" href="project9/">Project 9 – Canvas Drawing</a>
-</div>
-
-<footer>&copy; 2025 My Learning Journey</footer>
-
+</script>
 </body>
 </html>
