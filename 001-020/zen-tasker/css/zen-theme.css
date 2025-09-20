@@ -402,6 +402,92 @@
     }
 }
 
+/* Character Counter */
+.character-counter {
+    position: absolute;
+    bottom: -1.5rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    color: var(--zen-gray);
+    opacity: 0.7;
+    transition: var(--zen-transition-fast);
+}
+
+.character-counter.warning {
+    color: var(--priority-medium);
+    opacity: 1;
+}
+
+.character-counter.error {
+    color: var(--priority-high);
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* Input validation styles */
+.zen-input.invalid {
+    border-color: var(--priority-high);
+    box-shadow: 0 0 0 3px rgba(188, 90, 69, 0.1);
+}
+
+.zen-input.invalid:focus {
+    border-color: var(--priority-high);
+    box-shadow: 0 0 0 3px rgba(188, 90, 69, 0.2);
+}
+
+/* Mobile and touch improvements */
+.mobile .task-item {
+    padding: 1.25rem;
+}
+
+.mobile .task-checkbox {
+    width: 28px;
+    height: 28px;
+}
+
+.mobile .action-btn {
+    width: 40px;
+    height: 40px;
+}
+
+/* Loading states */
+.zen-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    gap: 1rem;
+}
+
+.zen-circle-loader {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* No animations class for accessibility */
+.no-animations *,
+.no-animations *::before,
+.no-animations *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+
+/* Task drag and drop (future enhancement) */
+.task-item.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+.task-item.drop-target {
+    border-color: var(--zen-primary);
+    background: var(--zen-light-gray);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .filter-section {
@@ -435,6 +521,12 @@
         left: 1rem;
         bottom: 1rem;
     }
+    
+    .character-counter {
+        position: static;
+        margin-top: 0.5rem;
+        text-align: right;
+    }
 }
 
 @media (max-width: 480px) {
@@ -446,5 +538,14 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+    
+    .zen-title {
+        font-size: 2rem;
+    }
+    
+    .input-group {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 }
