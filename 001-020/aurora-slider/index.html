@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags untuk responsivitas dan SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aurora Slider - Nordic themed image carousel">
+    <title>Aurora Slider - Nordic Beauty</title>
+    
+    <!-- Preload font untuk performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files - Reset pertama, kemudian main styles -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/aurora-slider.css">
+</head>
+<body>
+    <!-- Main Container dengan tema Aurora -->
+    <div class="aurora-container">
+        <!-- Header dengan gradient aurora -->
+        <header class="aurora-header">
+            <h1 class="aurora-title">Aurora Slider</h1>
+            <p class="aurora-subtitle">Experience the Nordic Beauty</p>
+        </header>
+
+        <!-- Main Slider Container -->
+        <main class="slider-main">
+            <div class="aurora-slider" id="auroraSlider">
+                <!-- Slider wrapper untuk transformasi -->
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <!-- Slide items akan di-generate oleh JavaScript -->
+                </div>
+
+                <!-- Navigation dots/indicators -->
+                <div class="slider-indicators" id="sliderIndicators">
+                    <!-- Indicators akan di-generate oleh JavaScript -->
+                </div>
+
+                <!-- Navigation arrows -->
+                <button class="slider-nav slider-nav--prev" id="prevBtn" aria-label="Previous slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                </button>
+                
+                <button class="slider-nav slider-nav--next" id="nextBtn" aria-label="Next slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Slider controls -->
+            <div class="slider-controls">
+                <button class="control-btn" id="playPauseBtn">
+                    <span class="play-icon">⏸️</span>
+                    <span class="control-text">Pause</span>
+                </button>
+                
+                <div class="speed-control">
+                    <label for="speedRange">Speed:</label>
+                    <input type="range" id="speedRange" min="1000" max="5000" value="3000" step="500">
+                    <span id="speedValue">3s</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer dengan informasi -->
+        <footer class="aurora-footer">
+            <p>&copy; 2025 Aurora Slider - Powered by Nordic Design</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript - Load terakhir untuk performance -->
+    <script src="assets/js/aurora-slider.js"></script>
+</body>
+</html>

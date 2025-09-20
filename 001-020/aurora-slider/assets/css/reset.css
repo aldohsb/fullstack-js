@@ -1,0 +1,131 @@
+/* 
+===========================================
+CSS RESET - Modern CSS Reset 2025
+===========================================
+Reset semua default browser styles untuk konsistensi
+*/
+
+/* Box sizing reset - semua elemen menggunakan border-box */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margins dan padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* HTML dan Body base setup */
+html {
+    /* Smooth scrolling untuk semua anchor links */
+    scroll-behavior: smooth;
+    /* Font size responsive dengan clamp() */
+    font-size: clamp(14px, 1vw + 0.5rem, 18px);
+    /* Line height untuk readability */
+    line-height: 1.6;
+}
+
+body {
+    /* Font stack modern dengan fallbacks */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                 'Helvetica Neue', Arial, sans-serif;
+    /* Text rendering optimization */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    
+    /* Background dasar */
+    background-color: #0a0a0f;
+    color: #ffffff;
+    
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
+}
+
+/* Media elements responsive */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Form elements normalization */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    outline: none;
+}
+
+/* Button reset */
+button {
+    background: none;
+    cursor: pointer;
+    /* Remove default button styles */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* List reset */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Link reset */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Heading reset - maintain semantic meaning but remove default styles */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* Table reset */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Form field reset */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="range"],
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Focus management - provide accessible focus indicators */
+:focus {
+    outline: 2px solid #64b5f6;
+    outline-offset: 2px;
+}
+
+/* Reduce motion untuk accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
