@@ -1,0 +1,519 @@
+/* ===== COMPONENT STYLES - RAINFOREST WEATHER WIDGET ===== */
+
+/* ===== WIDGET HEADER ===== */
+.widget-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: var(--space-2);
+}
+
+.location-info {
+    flex: 1;
+}
+
+.location-name {
+    font-family: var(--font-secondary);
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    color: var(--pure-white);
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.location-subtitle {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.7);
+    margin: var(--space-1) 0 0 0;
+    font-weight: var(--font-light);
+    letter-spacing: 0.5px;
+}
+
+.refresh-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.refresh-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.refresh-btn:active {
+    transform: scale(0.95);
+}
+
+.refresh-icon {
+    font-size: var(--text-lg);
+    transition: transform var(--transition-normal);
+}
+
+.refresh-btn.loading .refresh-icon {
+    animation: spin 1s linear infinite;
+}
+
+/* ===== CURRENT WEATHER SECTION ===== */
+.current-weather {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    align-items: center;
+    padding: var(--space-4) 0;
+}
+
+/* Temperature Display */
+.temperature-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.temp-main {
+    display: flex;
+    align-items: baseline;
+    font-family: var(--font-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.temperature {
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: var(--font-bold);
+    color: var(--pure-white);
+    line-height: 0.9;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-normal);
+}
+
+.temp-unit {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: var(--font-medium);
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: var(--space-1);
+}
+
+.temp-feels-like {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: var(--font-light);
+}
+
+.temp-feels-like span:last-child {
+    font-weight: var(--font-medium);
+    color: var(--pure-white);
+}
+
+/* Weather Visual */
+.weather-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.weather-icon-container {
+    position: relative;
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-icon {
+    font-size: clamp(3rem, 8vw, 4rem);
+    margin-bottom: var(--space-2);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    animation: float 3s ease-in-out infinite;
+    transition: all var(--transition-normal);
+}
+
+.animal-companion {
+    position: absolute;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    right: -10px;
+    bottom: -5px;
+    animation: animalMove 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.weather-description {
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weather-condition {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--pure-white);
+    margin: 0 0 var(--space-1) 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.weather-detail {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-style: italic;
+    font-weight: var(--font-light);
+}
+
+/* ===== WEATHER STATS GRID ===== */
+.weather-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.stat-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    font-size: var(--text-xl);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0; /* Untuk text truncation */
+}
+
+.stat-label {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: var(--font-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-1);
+}
+
+.stat-value {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--pure-white);
+    font-family: var(--font-secondary);
+}
+
+/* ===== HOURLY FORECAST ===== */
+.hourly-forecast {
+    margin-top: var(--space-2);
+}
+
+.section-title {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--pure-white);
+    margin: 0 0 var(--space-4) 0;
+    font-family: var(--font-secondary);
+}
+
+.hourly-scroll-container {
+    position: relative;
+    overflow: hidden;
+    mask: linear-gradient(
+        to right, 
+        transparent 0%, 
+        black 5%, 
+        black 95%, 
+        transparent 100%
+    );
+    -webkit-mask: linear-gradient(
+        to right, 
+        transparent 0%, 
+        black 5%, 
+        black 95%, 
+        transparent 100%
+    );
+}
+
+.hourly-items {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    padding: var(--space-2) var(--space-1);
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.hourly-items::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.hourly-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 80px;
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.hourly-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.hourly-time {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: var(--font-medium);
+    text-align: center;
+}
+
+.hourly-icon {
+    font-size: var(--text-lg);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.hourly-temp {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--pure-white);
+    font-family: var(--font-secondary);
+}
+
+.hourly-rain {
+    font-size: var(--text-xs);
+    color: var(--rain-blue);
+    font-weight: var(--font-medium);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+/* ===== WIDGET FOOTER ===== */
+.widget-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.update-time {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-weight: var(--font-light);
+}
+
+.update-time time {
+    font-weight: var(--font-medium);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.rainforest-fact {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    transition: all var(--transition-normal);
+}
+
+.rainforest-fact:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.fact-icon {
+    font-size: var(--text-base);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.fact-text {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+    font-style: italic;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 480px) {
+    .current-weather {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+        text-align: center;
+    }
+    
+    .temperature-display {
+        align-items: center;
+    }
+    
+    .weather-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+    
+    .stat-item {
+        padding: var(--space-3);
+    }
+    
+    .hourly-item {
+        min-width: 70px;
+        padding: var(--space-2);
+    }
+    
+    .widget-footer {
+        gap: var(--space-2);
+    }
+    
+    .rainforest-fact {
+        padding: var(--space-2);
+    }
+}
+
+@media (max-width: 360px) {
+    .widget-header {
+        flex-direction: column;
+        gap: var(--space-3);
+        align-items: flex-start;
+    }
+    
+    .refresh-btn {
+        align-self: flex-end;
+        width: 36px;
+        height: 36px;
+    }
+    
+    .temperature {
+        font-size: 2.5rem;
+    }
+    
+    .temp-unit {
+        font-size: 1.2rem;
+    }
+    
+    .weather-icon {
+        font-size: 2.5rem;
+    }
+    
+    .animal-companion {
+        font-size: 1rem;
+    }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+    .weather-icon,
+    .animal-companion {
+        animation: none;
+    }
+    
+    .stat-item:hover,
+    .hourly-item:hover,
+    .refresh-btn:hover {
+        transform: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .stat-item,
+    .hourly-item,
+    .rainforest-fact {
+        border: 2px solid var(--pure-white);
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .location-name,
+    .temperature,
+    .weather-condition,
+    .stat-value {
+        color: var(--pure-white);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+@keyframes animalMove {
+    0%, 100% {
+        transform: translateX(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateX(3px) rotate(-5deg);
+    }
+    75% {
+        transform: translateX(-3px) rotate(5deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes leafFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(10deg);
+    }
+}
