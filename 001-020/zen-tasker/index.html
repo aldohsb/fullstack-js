@@ -1,102 +1,36 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Tasker - Japanese Zen Garden To-Do</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/zen-theme.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zen Tasker - Japanese Zen Garden To-Do List</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <div class="zen-container">
-        <!-- Header dengan tema zen -->
-        <header class="zen-header">
-            <div class="zen-circle"></div>
-            <h1 class="zen-title">禅 Zen Tasker</h1>
-            <p class="zen-subtitle">Find peace in productivity</p>
-            <div class="zen-stones">
-                <div class="stone stone-1"></div>
-                <div class="stone stone-2"></div>
-                <div class="stone stone-3"></div>
-            </div>
-        </header>
 
-        <!-- Task Input Form -->
-        <section class="task-input-section">
-            <form class="zen-form" id="taskForm">
-                <div class="input-group">
-                    <input 
-                        type="text" 
-                        id="taskInput" 
-                        placeholder="Enter your mindful task..." 
-                        class="zen-input"
-                        required
-                        maxlength="100"
-                    >
-                    <select id="taskPriority" class="zen-select">
-                        <option value="low">Low Priority</option>
-                        <option value="medium" selected>Medium Priority</option>
-                        <option value="high">High Priority</option>
-                    </select>
-                    <button type="submit" class="zen-button zen-button-primary">
-                        <span class="button-text">Add Task</span>
-                        <span class="button-ripple"></span>
-                    </button>
-                </div>
-            </form>
-        </section>
+  <main id="app" class="zen-container">
+    <!-- Judul aplikasi -->
+    <h1 class="zen-title">Zen Tasker</h1>
 
-        <!-- Filter Controls -->
-        <section class="filter-section">
-            <div class="zen-filters">
-                <button class="filter-btn active" data-filter="all">All Tasks</button>
-                <button class="filter-btn" data-filter="active">Active</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
-                <button class="filter-btn" data-filter="high">High Priority</button>
-            </div>
-            <div class="task-stats">
-                <span class="stat" id="totalTasks">0 tasks</span>
-                <span class="stat" id="completedTasks">0 completed</span>
-                <span class="stat" id="activeTasks">0 active</span>
-            </div>
-        </section>
+    <!-- Input tambah task baru -->
+    <section class="task-input-section">
+      <input type="text" id="new-task" placeholder="Tambahkan tugas baru..." aria-label="Input tugas baru" />
+      <button id="add-task-btn" aria-label="Tambah tugas">Tambah</button>
+    </section>
 
-        <!-- Tasks Container -->
-        <main class="tasks-container">
-            <div class="zen-garden">
-                <div class="garden-lines"></div>
-                <ul id="tasksList" class="tasks-list">
-                    <!-- Tasks akan ditambahkan secara dinamis -->
-                </ul>
-                
-                <!-- Empty state -->
-                <div class="empty-state" id="emptyState">
-                    <div class="zen-meditation">
-                        <div class="meditation-circle"></div>
-                        <h3>Your mind is clear</h3>
-                        <p>Add a task to begin your mindful journey</p>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <!-- Filter tugas (semua, selesai, belum selesai) -->
+    <section class="filter-section">
+      <button data-filter="all" class="filter-btn active">Semua</button>
+      <button data-filter="active" class="filter-btn">Belum Selesai</button>
+      <button data-filter="completed" class="filter-btn">Selesai</button>
+    </section>
 
-        <!-- Footer -->
-        <footer class="zen-footer">
-            <p class="zen-quote">"The mind is everything. What you think you become."</p>
-        </footer>
-    </div>
+    <!-- List tugas akan dirender disini -->
+    <section>
+      <ul id="task-list" aria-live="polite" aria-label="Daftar tugas"></ul>
+    </section>
+  </main>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
-
-    <!-- Scripts -->
-    <script src="js/storage.js"></script>
-    <script src="js/taskManager.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/zenAnimations.js"></script>
-    <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

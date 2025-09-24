@@ -1,0 +1,177 @@
+/* Warna pastel hijau daun dan tone batu kerikil dengan nuansa japang zen */
+
+:root {
+  --color-green-pastel: #c5dfc8;
+  --color-stone: #d9d9d6;
+  --color-stone-dark: #a3a39d;
+  --color-background: #f5f7f3;
+  --color-text-primary: #344e41;
+  --color-text-secondary: #7d8a78;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Reset dan base layout */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.zen-container {
+  background: var(--color-stone);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem 2.5rem;
+  user-select: none;
+}
+
+.zen-title {
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: 'Georgia', serif;
+}
+
+/* Input section styling */
+.task-input-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#new-task {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-stone-dark);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+#new-task:focus {
+  border-color: var(--color-green-pastel);
+  box-shadow: 0 0 4px var(--color-green-pastel);
+}
+
+#add-task-btn {
+  background-color: var(--color-green-pastel);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+#add-task-btn:hover,
+#add-task-btn:focus {
+  background-color: #aecab6;
+  outline: none;
+}
+
+/* Filter buttons */
+.filter-section {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+  background-color: var(--color-stone-dark);
+  color: var(--color-background);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover,
+.filter-btn:focus {
+  background-color: var(--color-green-pastel);
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+/* Task list styling */
+#task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 360px;
+  overflow-y: auto;
+  border-top: 2px solid var(--color-stone-dark);
+}
+
+/* Task item */
+.task-item {
+  background-color: var(--color-background);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  margin-top: 0.75rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  transition: background-color 0.3s ease;
+}
+
+.task-item.completed {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+.task-desc {
+  flex-grow: 1;
+  margin-left: 0.75rem;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Checkbox style */
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-green-pastel);
+  cursor: pointer;
+}
+
+/* Delete button */
+.task-delete-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--color-stone-dark);
+  font-weight: 700;
+  font-size: 1.3rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.task-delete-btn:hover,
+.task-delete-btn:focus {
+  color: #ff6b6b;
+  outline: none;
+}

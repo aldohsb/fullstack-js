@@ -1,153 +1,18 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainforest Weather Widget</title>
-    
-    <!-- Preconnect untuk performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts - Font yang cocok untuk tema hutan -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS Files - Import berurutan sesuai prioritas -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/animations.css">
-    
-    <!-- Meta tags untuk SEO dan sharing -->
-    <meta name="description" content="Widget cuaca bertema hutan tropis dengan animasi hewan dan suasana lembap">
-    <meta name="theme-color" content="#2d5016">
-    
-    <!-- Favicon placeholder -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rainforest Weather Widget</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-leaf">🌿</div>
-            <p>Loading rainforest data...</p>
-        </div>
-    </div>
+  <!-- Container utama widget cuaca -->
+  <div id="weather-widget" class="widget-container">
+    <!-- Data cuaca akan diisi secara dinamis oleh JS -->
+  </div>
 
-    <!-- Main Container -->
-    <main class="main-container">
-        <!-- Background Elements - Elemen dekoratif latar belakang -->
-        <div class="background-elements">
-            <!-- Animated leaves falling -->
-            <div class="falling-leaves"></div>
-            <!-- Animated rain drops -->
-            <div class="rain-drops"></div>
-            <!-- Forest silhouette -->
-            <div class="forest-silhouette"></div>
-        </div>
-
-        <!-- Weather Widget Container -->
-        <div class="weather-widget" id="weather-widget">
-            <!-- Widget Header -->
-            <header class="widget-header">
-                <div class="location-info">
-                    <h1 class="location-name" id="location-name">Amazon Rainforest</h1>
-                    <p class="location-subtitle" id="location-subtitle">Heart of the Jungle</p>
-                </div>
-                <div class="refresh-btn" id="refresh-btn" title="Refresh weather data">
-                    <span class="refresh-icon">🔄</span>
-                </div>
-            </header>
-
-            <!-- Current Weather Section -->
-            <section class="current-weather" id="current-weather">
-                <!-- Temperature Display -->
-                <div class="temperature-display">
-                    <div class="temp-main">
-                        <span class="temperature" id="temperature">28</span>
-                        <span class="temp-unit">°C</span>
-                    </div>
-                    <div class="temp-feels-like">
-                        <span>Feels like </span>
-                        <span id="feels-like">32°C</span>
-                    </div>
-                </div>
-
-                <!-- Weather Icon & Description -->
-                <div class="weather-visual">
-                    <div class="weather-icon-container">
-                        <div class="weather-icon" id="weather-icon">🌧️</div>
-                        <div class="animal-companion" id="animal-companion">🦜</div>
-                    </div>
-                    <div class="weather-description">
-                        <p class="weather-condition" id="weather-condition">Heavy Rain</p>
-                        <p class="weather-detail" id="weather-detail">Typical rainforest shower</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Weather Stats Grid -->
-            <section class="weather-stats" id="weather-stats">
-                <div class="stat-item humidity">
-                    <div class="stat-icon">💧</div>
-                    <div class="stat-content">
-                        <span class="stat-label">Humidity</span>
-                        <span class="stat-value" id="humidity-value">85%</span>
-                    </div>
-                </div>
-                
-                <div class="stat-item wind">
-                    <div class="stat-icon">🍃</div>
-                    <div class="stat-content">
-                        <span class="stat-label">Wind</span>
-                        <span class="stat-value" id="wind-value">12 km/h</span>
-                    </div>
-                </div>
-                
-                <div class="stat-item pressure">
-                    <div class="stat-icon">🌡️</div>
-                    <div class="stat-content">
-                        <span class="stat-label">Pressure</span>
-                        <span class="stat-value" id="pressure-value">1013 hPa</span>
-                    </div>
-                </div>
-                
-                <div class="stat-item uv-index">
-                    <div class="stat-icon">☀️</div>
-                    <div class="stat-content">
-                        <span class="stat-label">UV Index</span>
-                        <span class="stat-value" id="uv-value">3</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Hourly Forecast -->
-            <section class="hourly-forecast" id="hourly-forecast">
-                <h3 class="section-title">Today's Forecast</h3>
-                <div class="hourly-scroll-container">
-                    <div class="hourly-items" id="hourly-items">
-                        <!-- Hourly items akan di-generate oleh JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Footer dengan informasi tambahan -->
-            <footer class="widget-footer">
-                <div class="update-time">
-                    <span>Last updated: </span>
-                    <time id="last-updated">--:--</time>
-                </div>
-                <div class="rainforest-fact" id="rainforest-fact">
-                    <span class="fact-icon">🌱</span>
-                    <span class="fact-text">Did you know? Rainforests produce 20% of the world's oxygen!</span>
-                </div>
-            </footer>
-        </div>
-    </main>
-
-    <!-- JavaScript Files - Load dalam urutan dependency -->
-    <script src="js/utils.js"></script>
-    <script src="js/weatherData.js"></script>
-    <script src="js/components.js"></script>
-    <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
