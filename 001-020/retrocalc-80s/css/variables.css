@@ -1,0 +1,125 @@
+/* ============================================
+   CSS VARIABLES - DESIGN TOKENS
+   Semua warna, spacing, dan values disimpan di sini
+   untuk konsistensi dan mudah maintenance
+   ============================================ */
+
+:root {
+    /* ===== NEON COLOR PALETTE ===== */
+    /* Warna utama dengan efek neon glow */
+    --neon-pink: #ff006e;           /* Pink terang untuk accent */
+    --neon-cyan: #00f5ff;           /* Cyan electric untuk glow */
+    --neon-purple: #b537f2;         /* Purple vibrant */
+    --neon-yellow: #ffea00;         /* Yellow neon sign */
+    --neon-green: #39ff14;          /* Green terminal style */
+    --neon-orange: #ff6600;         /* Orange retro */
+    
+    /* ===== DARK BACKGROUND COLORS ===== */
+    /* Gradasi gelap untuk background arcade */
+    --bg-dark-primary: #0a0e27;     /* Navy sangat gelap - base */
+    --bg-dark-secondary: #1a1f3a;   /* Navy gelap - secondary */
+    --bg-dark-tertiary: #2d1b4e;    /* Purple gelap - accent areas */
+    
+    /* ===== CALCULATOR COLORS ===== */
+    /* Warna khusus untuk komponen kalkulator */
+    --calc-bg: rgba(13, 17, 38, 0.85);           /* Background kalkulator dengan transparency */
+    --calc-border: rgba(0, 245, 255, 0.3);       /* Border cyan dengan opacity */
+    --calc-shadow: rgba(0, 245, 255, 0.5);       /* Shadow glow cyan */
+    
+    /* ===== BUTTON COLORS ===== */
+    /* Palette untuk berbagai jenis tombol */
+    --btn-number-bg: rgba(30, 35, 60, 0.9);      /* Background tombol angka */
+    --btn-number-hover: rgba(0, 245, 255, 0.2);  /* Hover state cyan */
+    --btn-operator-bg: rgba(255, 0, 110, 0.2);   /* Background operator pink */
+    --btn-function-bg: rgba(181, 55, 242, 0.2);  /* Background function purple */
+    --btn-equals-bg: rgba(57, 255, 20, 0.3);     /* Background equals green */
+    
+    /* ===== TEXT COLORS ===== */
+    /* Warna text dengan contrast tinggi */
+    --text-primary: #ffffff;                      /* White untuk text utama */
+    --text-secondary: #b4b4ff;                    /* Light blue untuk secondary */
+    --text-glow: rgba(0, 245, 255, 0.8);         /* Cyan untuk glow effect */
+    --text-display: #00f5ff;                      /* Cyan electric untuk display */
+    
+    /* ===== SPACING SYSTEM ===== */
+    /* Consistent spacing menggunakan 8px base grid */
+    --space-xs: 0.5rem;      /* 8px */
+    --space-sm: 1rem;        /* 16px */
+    --space-md: 1.5rem;      /* 24px */
+    --space-lg: 2rem;        /* 32px */
+    --space-xl: 3rem;        /* 48px */
+    --space-xxl: 4rem;       /* 64px */
+    
+    /* ===== BORDER RADIUS ===== */
+    /* Rounded corners untuk modern retro look */
+    --radius-sm: 4px;        /* Small elements */
+    --radius-md: 8px;        /* Medium elements */
+    --radius-lg: 12px;       /* Large elements */
+    --radius-xl: 16px;       /* Extra large containers */
+    
+    /* ===== TYPOGRAPHY ===== */
+    /* Font sizes dengan scale ratio 1.25 (Major Third) */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-md: 1.25rem;    /* 20px */
+    --font-size-lg: 1.5rem;     /* 24px */
+    --font-size-xl: 2rem;       /* 32px */
+    --font-size-xxl: 2.5rem;    /* 40px */
+    --font-size-display: 3rem;  /* 48px - untuk display kalkulator */
+    
+    /* ===== FONT FAMILIES ===== */
+    --font-pixel: 'Press Start 2P', cursive;     /* Font retro pixel */
+    --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  /* Fallback */
+    
+    /* ===== SHADOWS & GLOWS ===== */
+    /* Shadow system untuk depth dan neon effects */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+    
+    /* Neon glow effects - multiple layers untuk realistic glow */
+    --glow-cyan: 0 0 10px rgba(0, 245, 255, 0.5),
+                 0 0 20px rgba(0, 245, 255, 0.3),
+                 0 0 30px rgba(0, 245, 255, 0.2);
+    
+    --glow-pink: 0 0 10px rgba(255, 0, 110, 0.5),
+                 0 0 20px rgba(255, 0, 110, 0.3),
+                 0 0 30px rgba(255, 0, 110, 0.2);
+    
+    --glow-purple: 0 0 10px rgba(181, 55, 242, 0.5),
+                   0 0 20px rgba(181, 55, 242, 0.3),
+                   0 0 30px rgba(181, 55, 242, 0.2);
+    
+    --glow-green: 0 0 10px rgba(57, 255, 20, 0.6),
+                  0 0 20px rgba(57, 255, 20, 0.4),
+                  0 0 30px rgba(57, 255, 20, 0.2);
+    
+    /* ===== TRANSITIONS ===== */
+    /* Smooth transitions untuk interaksi */
+    --transition-fast: 150ms ease-in-out;        /* Untuk hover effects */
+    --transition-base: 250ms ease-in-out;        /* Default transition */
+    --transition-slow: 400ms ease-in-out;        /* Untuk animasi besar */
+    
+    /* ===== Z-INDEX SYSTEM ===== */
+    /* Layer management untuk overlapping elements */
+    --z-base: 1;
+    --z-dropdown: 10;
+    --z-overlay: 100;
+    --z-modal: 1000;
+    --z-toast: 10000;
+    
+    /* ===== ANIMATION DURATIONS ===== */
+    --duration-fast: 200ms;
+    --duration-base: 300ms;
+    --duration-slow: 500ms;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+/* Media query breakpoints sebagai comment untuk reference */
+/* 
+  Mobile: 320px - 480px
+  Tablet: 481px - 768px
+  Desktop: 769px - 1024px
+  Large: 1025px+
+*/

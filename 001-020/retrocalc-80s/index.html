@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Meta tags untuk SEO dan responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RetroCalc 80s - Kalkulator dengan tema arcade retro neon">
+    <meta name="keywords" content="calculator, retro, 80s, neon, arcade">
+    <meta name="author" content="RetroCalc Team">
+    
+    <!-- Title dengan emoji untuk branding -->
+    <title>🎮 RetroCalc 80s | Arcade Neon Calculator</title>
+    
+    <!-- Preconnect untuk optimasi loading font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Font: Press Start 2P untuk efek pixel retro -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files - Urutan penting untuk cascading yang benar -->
+    <link rel="stylesheet" href="css/variables.css">    <!-- 1. Variables dulu -->
+    <link rel="stylesheet" href="css/styles.css">       <!-- 2. Global styles -->
+    <link rel="stylesheet" href="css/calculator.css">   <!-- 3. Component styles -->
+    <link rel="stylesheet" href="css/animations.css">   <!-- 4. Animations terakhir -->
+</head>
+<body>
+    <!-- Main container dengan gradient background -->
+    <div class="container">
+        
+        <!-- Header section dengan title dan tagline -->
+        <header class="header">
+            <h1 class="title" data-text="RETROCALC 80s">RETROCALC 80s</h1>
+            <p class="tagline">// ARCADE NEON CALCULATOR //</p>
+        </header>
+
+        <!-- Calculator wrapper - main component -->
+        <main class="calculator-wrapper">
+            
+            <!-- Calculator container dengan glassmorphism effect -->
+            <div class="calculator" id="calculator">
+                
+                <!-- Display section untuk menampilkan angka dan operasi -->
+                <div class="display-container">
+                    <!-- Previous operand - angka sebelumnya -->
+                    <div class="display-previous" id="previousOperand" aria-label="Operasi sebelumnya"></div>
+                    
+                    <!-- Current operand - angka yang sedang diinput -->
+                    <div class="display-current" id="currentOperand" aria-label="Tampilan utama">0</div>
+                </div>
+
+                <!-- Buttons grid - menggunakan data attributes untuk event delegation -->
+                <div class="buttons-grid" id="buttonsGrid" role="group" aria-label="Tombol kalkulator">
+                    
+                    <!-- Row 1: Clear dan operator -->
+                    <button class="btn btn-function" data-action="clear" aria-label="Clear semua">AC</button>
+                    <button class="btn btn-function" data-action="delete" aria-label="Hapus terakhir">DEL</button>
+                    <button class="btn btn-function" data-action="percent" aria-label="Persen">%</button>
+                    <button class="btn btn-operator" data-operator="/" aria-label="Bagi">÷</button>
+
+                    <!-- Row 2: Angka 7-9 dan multiply -->
+                    <button class="btn btn-number" data-number="7" aria-label="Tujuh">7</button>
+                    <button class="btn btn-number" data-number="8" aria-label="Delapan">8</button>
+                    <button class="btn btn-number" data-number="9" aria-label="Sembilan">9</button>
+                    <button class="btn btn-operator" data-operator="*" aria-label="Kali">×</button>
+
+                    <!-- Row 3: Angka 4-6 dan minus -->
+                    <button class="btn btn-number" data-number="4" aria-label="Empat">4</button>
+                    <button class="btn btn-number" data-number="5" aria-label="Lima">5</button>
+                    <button class="btn btn-number" data-number="6" aria-label="Enam">6</button>
+                    <button class="btn btn-operator" data-operator="-" aria-label="Kurang">−</button>
+
+                    <!-- Row 4: Angka 1-3 dan plus -->
+                    <button class="btn btn-number" data-number="1" aria-label="Satu">1</button>
+                    <button class="btn btn-number" data-number="2" aria-label="Dua">2</button>
+                    <button class="btn btn-number" data-number="3" aria-label="Tiga">3</button>
+                    <button class="btn btn-operator" data-operator="+" aria-label="Tambah">+</button>
+
+                    <!-- Row 5: Zero, decimal, dan equals -->
+                    <button class="btn btn-number btn-zero" data-number="0" aria-label="Nol">0</button>
+                    <button class="btn btn-number" data-number="." aria-label="Titik desimal">.</button>
+                    <button class="btn btn-equals" data-action="equals" aria-label="Sama dengan">=</button>
+                </div>
+
+                <!-- Decorative scanline effect untuk retro vibe -->
+                <div class="scanline" aria-hidden="true"></div>
+            </div>
+
+        </main>
+
+        <!-- Footer dengan credits dan keyboard hint -->
+        <footer class="footer">
+            <p class="keyboard-hint">⌨️ Keyboard Support: Numbers, Operators, Enter, Backspace, Escape</p>
+            <p class="credits">Made with 💜 by RetroCalc Team • 2025</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript Files - Defer untuk optimasi loading -->
+    <!-- Urutan: utility modules dulu, main logic terakhir -->
+    <script src="js/display.js" defer></script>      <!-- Display management -->
+    <script src="js/keyboard.js" defer></script>     <!-- Keyboard handling -->
+    <script src="js/calculator.js" defer></script>   <!-- Main calculator logic -->
+</body>
+</html>
