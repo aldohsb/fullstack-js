@@ -1,0 +1,355 @@
+/* ========================================
+   RETROCALC 80s - ARCADE NEON CALCULATOR
+   Styling dengan tema retro arcade tahun 80an
+   ======================================== */
+
+/* === ROOT VARIABLES === */
+/* Definisi warna dan properti yang bisa digunakan ulang */
+:root {
+    /* Palet warna neon */
+    --neon-pink: #ff006e;
+    --neon-blue: #00d9ff;
+    --neon-purple: #b967ff;
+    --neon-green: #05ffa1;
+    --neon-yellow: #fffb00;
+    
+    /* Warna background gelap untuk kontras neon */
+    --dark-bg: #0a0e27;
+    --dark-card: #1a1e3d;
+    --dark-display: #0d1126;
+    
+    /* Font family retro pixel */
+    --font-pixel: 'Press Start 2P', cursive;
+    
+    /* Shadow untuk efek glow neon */
+    --glow-pink: 0 0 10px var(--neon-pink),
+                 0 0 20px var(--neon-pink),
+                 0 0 30px var(--neon-pink);
+    
+    --glow-blue: 0 0 10px var(--neon-blue),
+                 0 0 20px var(--neon-blue),
+                 0 0 30px var(--neon-blue);
+    
+    --glow-purple: 0 0 10px var(--neon-purple),
+                   0 0 20px var(--neon-purple);
+}
+
+/* === RESET & BASE STYLES === */
+/* Reset margin, padding, dan box-sizing untuk konsistensi */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Border dan padding termasuk dalam width/height */
+}
+
+/* Styling body dengan background gradient */
+body {
+    font-family: var(--font-pixel);
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1e3d 100%);
+    min-height: 100vh; /* Minimal tinggi layar penuh */
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+    padding: 20px;
+    color: #fff;
+    
+    /* Pattern background untuk efek arcade */
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 50%);
+}
+
+/* === CALCULATOR CONTAINER === */
+.calculator-container {
+    width: 100%;
+    max-width: 420px; /* Lebar maksimal kalkulator */
+    background: var(--dark-card);
+    border-radius: 20px;
+    padding: 30px;
+    
+    /* Box shadow dengan multiple layer untuk depth */
+    box-shadow: 
+        0 0 20px rgba(255, 0, 110, 0.3),
+        0 0 40px rgba(0, 217, 255, 0.2),
+        0 10px 50px rgba(0, 0, 0, 0.5);
+    
+    /* Border neon glow */
+    border: 2px solid var(--neon-purple);
+}
+
+/* === HEADER SECTION === */
+.calculator-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Judul dengan efek neon glow */
+.neon-title {
+    font-size: 1.5rem;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-pink);
+    margin-bottom: 10px;
+    letter-spacing: 2px; /* Spasi antar huruf untuk gaya retro */
+    
+    /* Animasi pulse untuk efek berkedip */
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Subtitle kecil */
+.subtitle {
+    font-size: 0.5rem;
+    color: var(--neon-blue);
+    text-shadow: var(--glow-blue);
+    letter-spacing: 3px;
+    opacity: 0.8;
+}
+
+/* Keyframe animasi pulse (berkedip lembut) */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: var(--glow-pink);
+    }
+    50% {
+        opacity: 0.7;
+        text-shadow: 
+            0 0 5px var(--neon-pink),
+            0 0 10px var(--neon-pink);
+    }
+}
+
+/* === DISPLAY SECTION === */
+.display {
+    background: var(--dark-display);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    min-height: 100px;
+    
+    /* Border dengan gradient neon */
+    border: 2px solid;
+    border-image: linear-gradient(
+        90deg,
+        var(--neon-blue),
+        var(--neon-purple),
+        var(--neon-pink)
+    ) 1;
+    
+    /* Glow effect di sekitar display */
+    box-shadow: 
+        inset 0 0 20px rgba(0, 217, 255, 0.1),
+        0 0 15px rgba(0, 217, 255, 0.2);
+}
+
+/* Display untuk operasi sebelumnya (lebih kecil) */
+.display-previous {
+    font-size: 0.8rem;
+    color: var(--neon-purple);
+    text-align: right;
+    min-height: 25px;
+    opacity: 0.7;
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Break kata panjang */
+    overflow-wrap: break-word;
+}
+
+/* Display untuk angka current (lebih besar) */
+.display-current {
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    text-align: right;
+    text-shadow: 0 0 10px var(--neon-green);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4; /* Jarak antar baris jika wrap */
+}
+
+/* === BUTTON GRID === */
+.button-grid {
+    display: grid;
+    /* 4 kolom dengan lebar sama */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px; /* Jarak antar tombol */
+    margin-bottom: 20px;
+}
+
+/* === BASE BUTTON STYLES === */
+.btn {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    padding: 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    
+    /* Transition untuk animasi smooth */
+    transition: all 0.2s ease;
+    
+    /* Background gradient default */
+    background: linear-gradient(145deg, #2a2d4a, #1a1d35);
+    color: #fff;
+    
+    /* Border subtle */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Shadow untuk depth 3D */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Hover state - semua tombol */
+.btn:hover {
+    transform: translateY(-2px); /* Naik sedikit */
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Active state - efek tekan */
+.btn:active {
+    transform: translateY(1px); /* Turun untuk efek tekan */
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Focus state untuk accessibility (keyboard navigation) */
+.btn:focus {
+    outline: 3px solid var(--neon-blue);
+    outline-offset: 2px;
+}
+
+/* === BUTTON VARIANTS === */
+
+/* Tombol angka - warna biru neon */
+.btn-number {
+    background: linear-gradient(145deg, #1e3a5f, #152a45);
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.btn-number:hover {
+    background: linear-gradient(145deg, #2a4d7c, #1e3a5f);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(0, 217, 255, 0.3);
+}
+
+/* Tombol operator - warna pink neon */
+.btn-operator {
+    background: linear-gradient(145deg, #5f1e3a, #451529);
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.btn-operator:hover {
+    background: linear-gradient(145deg, #7c2a4d, #5f1e3a);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(255, 0, 110, 0.3);
+}
+
+/* Tombol fungsi (AC, DEL) - warna purple */
+.btn-function {
+    background: linear-gradient(145deg, #3a1e5f, #2a1545);
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple);
+    font-size: 0.85rem; /* Sedikit lebih kecil untuk text panjang */
+}
+
+.btn-function:hover {
+    background: linear-gradient(145deg, #4d2a7c, #3a1e5f);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(185, 103, 255, 0.3);
+}
+
+/* Tombol equals (=) - warna green neon, lebih besar */
+.btn-equals {
+    background: linear-gradient(145deg, #1e5f3a, #154529);
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+    grid-column: span 2; /* Mengambil 2 kolom */
+    font-size: 1.3rem;
+}
+
+.btn-equals:hover {
+    background: linear-gradient(145deg, #2a7c4d, #1e5f3a);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(5, 255, 161, 0.4);
+}
+
+/* Tombol zero - mengambil 2 kolom untuk layout balance */
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* === FOOTER SECTION === */
+.calculator-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.keyboard-hint {
+    font-size: 0.4rem;
+    color: var(--neon-yellow);
+    opacity: 0.6;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+/* === RESPONSIVE DESIGN === */
+/* Untuk layar kecil (mobile) */
+@media (max-width: 480px) {
+    .calculator-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    .neon-title {
+        font-size: 1.2rem;
+    }
+    
+    .display-current {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 20px;
+        font-size: 0.9rem;
+    }
+    
+    .keyboard-hint {
+        font-size: 0.35rem;
+    }
+}
+
+/* Untuk layar sangat kecil */
+@media (max-width: 360px) {
+    .btn {
+        padding: 15px;
+        font-size: 0.8rem;
+    }
+    
+    .display-current {
+        font-size: 1.3rem;
+    }
+}
+
+/* === ACCESSIBILITY === */
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid #fff;
+    }
+}
+
+/* Reduced motion untuk user yang sensitif animasi */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

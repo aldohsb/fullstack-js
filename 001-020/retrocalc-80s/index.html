@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetroCalc 80s - Arcade Neon Calculator</title>
+    
+    <!-- Link ke Google Fonts untuk font pixel/retro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Container utama kalkulator -->
+    <div class="calculator-container">
+        
+        <!-- Header dengan judul arcade -->
+        <header class="calculator-header">
+            <h1 class="neon-title">RetroCalc 80s</h1>
+            <p class="subtitle">PRESS START</p>
+        </header>
+
+        <!-- Layar display kalkulator -->
+        <!-- aria-live untuk accessibility (screen reader akan membaca perubahan) -->
+        <div class="display" aria-live="polite" aria-atomic="true">
+            <div class="display-previous" id="previousDisplay">0</div>
+            <div class="display-current" id="currentDisplay">0</div>
+        </div>
+
+        <!-- Grid tombol kalkulator -->
+        <!-- Menggunakan data-action untuk event delegation -->
+        <div class="button-grid" role="group" aria-label="Calculator buttons">
+            
+            <!-- Baris 1: Fungsi utilitas -->
+            <button class="btn btn-function" data-action="clear" aria-label="Clear">AC</button>
+            <button class="btn btn-function" data-action="delete" aria-label="Delete">DEL</button>
+            <button class="btn btn-operator" data-action="operator" data-value="%" aria-label="Percent">%</button>
+            <button class="btn btn-operator" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
+
+            <!-- Baris 2: Angka 7-9 dan perkalian -->
+            <button class="btn btn-number" data-action="number" data-value="7" aria-label="7">7</button>
+            <button class="btn btn-number" data-action="number" data-value="8" aria-label="8">8</button>
+            <button class="btn btn-number" data-action="number" data-value="9" aria-label="9">9</button>
+            <button class="btn btn-operator" data-action="operator" data-value="×" aria-label="Multiply">×</button>
+
+            <!-- Baris 3: Angka 4-6 dan pengurangan -->
+            <button class="btn btn-number" data-action="number" data-value="4" aria-label="4">4</button>
+            <button class="btn btn-number" data-action="number" data-value="5" aria-label="5">5</button>
+            <button class="btn btn-number" data-action="number" data-value="6" aria-label="6">6</button>
+            <button class="btn btn-operator" data-action="operator" data-value="-" aria-label="Minus">-</button>
+
+            <!-- Baris 4: Angka 1-3 dan penjumlahan -->
+            <button class="btn btn-number" data-action="number" data-value="1" aria-label="1">1</button>
+            <button class="btn btn-number" data-action="number" data-value="2" aria-label="2">2</button>
+            <button class="btn btn-number" data-action="number" data-value="3" aria-label="3">3</button>
+            <button class="btn btn-operator" data-action="operator" data-value="+" aria-label="Plus">+</button>
+
+            <!-- Baris 5: Angka 0, desimal, dan sama dengan -->
+            <button class="btn btn-number btn-zero" data-action="number" data-value="0" aria-label="0">0</button>
+            <button class="btn btn-number" data-action="number" data-value="." aria-label="Decimal">.</button>
+            <button class="btn btn-equals" data-action="equals" aria-label="Equals">=</button>
+        </div>
+
+        <!-- Footer info keyboard shortcuts -->
+        <footer class="calculator-footer">
+            <p class="keyboard-hint">⌨️ Keyboard Support: Numbers, Operators, Enter, Backspace, Escape</p>
+        </footer>
+    </div>
+
+    <!-- Load JavaScript modules dalam urutan yang benar -->
+    <!-- calculator.js harus dimuat pertama karena berisi logika utama -->
+    <script src="js/calculator.js"></script>
+    <!-- keyboard.js untuk handling keyboard input -->
+    <script src="js/keyboard.js"></script>
+    <!-- app.js terakhir untuk inisialisasi dan menghubungkan semuanya -->
+    <script src="js/app.js"></script>
+</body>
+</html>
