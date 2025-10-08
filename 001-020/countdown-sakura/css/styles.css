@@ -1,0 +1,435 @@
+/* ========================================
+   CUSTOM PROPERTIES (CSS Variables)
+   Memudahkan maintenance dan konsistensi tema
+   ======================================== */
+:root {
+    /* Warna tema sakura - pink gradients */
+    --primary-pink: #ff69b4;
+    --secondary-pink: #ffc0cb;
+    --light-pink: #ffb6c1;
+    --dark-pink: #ff1493;
+    
+    /* Warna pendukung */
+    --white: #ffffff;
+    --text-primary: #2d2d2d;
+    --text-secondary: #666666;
+    --shadow-color: rgba(255, 105, 180, 0.3);
+    
+    /* Spacing system untuk konsistensi */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Typography */
+    --font-family: 'Poppins', sans-serif;
+    --font-size-base: 16px;
+}
+
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+* {
+    /* Reset default margin dan padding */
+    margin: 0;
+    padding: 0;
+    /* Border-box membuat width/height include padding */
+    box-sizing: border-box;
+}
+
+body {
+    /* Font system */
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    
+    /* Gradient background pink yang smooth */
+    background: linear-gradient(
+        135deg,
+        var(--light-pink) 0%,
+        var(--secondary-pink) 50%,
+        var(--primary-pink) 100%
+    );
+    
+    /* Pastikan gradient cover full viewport */
+    min-height: 100vh;
+    
+    /* Overflow hidden untuk prevent scrollbar dari animasi */
+    overflow: hidden;
+    
+    /* Flexbox untuk center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Text styling */
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* ========================================
+   SAKURA ANIMATION CONTAINER
+   Container untuk kelopak sakura animasi
+   ======================================== */
+.sakura-container {
+    /* Positioning untuk overlay seluruh layar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Z-index rendah agar di belakang content */
+    z-index: 1;
+    
+    /* Pointer events none agar tidak ganggu interaksi */
+    pointer-events: none;
+    
+    /* Subtle overflow untuk smooth animation */
+    overflow: hidden;
+}
+
+/* ========================================
+   MAIN CONTAINER
+   ======================================== */
+.container {
+    /* Positioning dan z-index untuk content di depan */
+    position: relative;
+    z-index: 10;
+    
+    /* Width dengan max untuk responsiveness */
+    width: 90%;
+    max-width: 800px;
+    
+    /* Padding internal */
+    padding: var(--spacing-xl);
+    
+    /* Background dengan glassmorphism effect */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    
+    /* Border radius untuk smooth corners */
+    border-radius: 30px;
+    
+    /* Multi-layer shadow untuk depth */
+    box-shadow: 
+        0 10px 40px var(--shadow-color),
+        0 0 100px rgba(255, 182, 193, 0.2);
+    
+    /* Smooth transition untuk hover effects */
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect untuk interactivity */
+.container:hover {
+    transform: translateY(-5px);
+}
+
+/* ========================================
+   HEADER SECTION
+   ======================================== */
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.logo {
+    /* Font size besar untuk emoji */
+    font-size: 4rem;
+    
+    /* Margin bottom */
+    margin-bottom: var(--spacing-sm);
+    
+    /* Animation untuk logo */
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Keyframe animation untuk floating effect */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.title {
+    /* Typography */
+    font-size: 3rem;
+    font-weight: 700;
+    
+    /* Gradient text effect */
+    background: linear-gradient(
+        135deg,
+        var(--dark-pink),
+        var(--primary-pink)
+    );
+    
+    /* Clip background ke text untuk gradient effect */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Spacing */
+    margin-bottom: var(--spacing-sm);
+    
+    /* Text shadow untuk depth (di belakang transparent text) */
+    filter: drop-shadow(2px 2px 4px var(--shadow-color));
+}
+
+.subtitle {
+    /* Typography */
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    
+    /* Spacing */
+    margin-bottom: var(--spacing-md);
+}
+
+/* ========================================
+   COUNTDOWN SECTION
+   ======================================== */
+.countdown-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.countdown-grid {
+    /* Grid layout untuk 4 items */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    
+    /* Spacing */
+    margin-bottom: var(--spacing-lg);
+}
+
+.countdown-item {
+    /* Background styling */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 182, 193, 0.3),
+        rgba(255, 192, 203, 0.2)
+    );
+    
+    /* Border dan radius */
+    border: 2px solid rgba(255, 105, 180, 0.2);
+    border-radius: 20px;
+    
+    /* Padding internal */
+    padding: var(--spacing-lg);
+    
+    /* Center content */
+    text-align: center;
+    
+    /* Transition untuk hover effect */
+    transition: all 0.3s ease;
+}
+
+/* Hover effect untuk countdown items */
+.countdown-item:hover {
+    /* Transform scale untuk zoom effect */
+    transform: scale(1.05);
+    
+    /* Enhanced border */
+    border-color: var(--primary-pink);
+    
+    /* Enhanced shadow */
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.countdown-number {
+    /* Typography untuk angka besar */
+    font-size: 3.5rem;
+    font-weight: 700;
+    
+    /* Gradient color */
+    background: linear-gradient(
+        135deg,
+        var(--dark-pink),
+        var(--primary-pink)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Spacing */
+    margin-bottom: var(--spacing-xs);
+    
+    /* Line height untuk prevent clipping */
+    line-height: 1.2;
+}
+
+.countdown-label {
+    /* Typography untuk label */
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.event-message {
+    /* Center text */
+    text-align: center;
+    
+    /* Typography */
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    
+    /* Spacing */
+    padding: var(--spacing-md);
+    
+    /* Background */
+    background: rgba(255, 182, 193, 0.2);
+    border-radius: 15px;
+    
+    /* Transition untuk smooth show/hide */
+    transition: all 0.3s ease;
+}
+
+/* Class untuk event yang sudah dimulai */
+.event-message.event-started {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 105, 180, 0.3),
+        rgba(255, 20, 147, 0.2)
+    );
+    color: var(--dark-pink);
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+/* ========================================
+   FOOTER SECTION
+   ======================================== */
+.footer {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid rgba(255, 105, 180, 0.2);
+}
+
+.event-date {
+    /* Typography */
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   SAKURA PETAL ANIMATION
+   Styling untuk kelopak sakura yang jatuh
+   ======================================== */
+.sakura-petal {
+    /* Position absolute untuk animasi bebas */
+    position: absolute;
+    
+    /* Size kelopak */
+    width: 20px;
+    height: 20px;
+    
+    /* Emoji sakura */
+    font-size: 20px;
+    
+    /* Opacity untuk efek halus */
+    opacity: 0.8;
+    
+    /* Pointer events none agar tidak ganggu click */
+    pointer-events: none;
+    
+    /* Z-index di belakang container */
+    z-index: 5;
+    
+    /* Animation akan di-apply via JavaScript */
+    animation: fall linear infinite;
+}
+
+/* Keyframe untuk animasi jatuh */
+@keyframes fall {
+    /* Start dari atas layar */
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.8;
+    }
+    
+    /* Middle dengan rotasi */
+    50% {
+        transform: translateY(50vh) rotate(180deg);
+        opacity: 0.6;
+    }
+    
+    /* End di bawah layar */
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   Media queries untuk berbagai ukuran layar
+   ======================================== */
+
+/* Tablet (768px ke bawah) */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    /* Grid menjadi 2x2 untuk tablet */
+    .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .countdown-number {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Mobile (480px ke bawah) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 3rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .countdown-number {
+        font-size: 2rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.75rem;
+    }
+    
+    .countdown-item {
+        padding: var(--spacing-md);
+    }
+    
+    .container {
+        width: 95%;
+        padding: var(--spacing-md);
+        border-radius: 20px;
+    }
+    
+    .event-message {
+        font-size: 0.95rem;
+    }
+}

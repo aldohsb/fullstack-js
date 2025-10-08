@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Meta tags untuk SEO dan responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Countdown Event Sakura Festival - Bunga Sakura Jepang">
+    
+    <title>🌸 Countdown Sakura Event</title>
+    
+    <!-- Link ke file CSS eksternal untuk styling -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Preconnect untuk font Google (optimasi loading) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Import Google Font - Poppins untuk tampilan modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Container untuk animasi kelopak sakura di background -->
+    <div id="sakura-container" class="sakura-container"></div>
+    
+    <!-- Main content wrapper -->
+    <main class="container">
+        <!-- Header section dengan logo sakura emoji -->
+        <header class="header">
+            <div class="logo">🌸</div>
+            <h1 class="title">Sakura Festival</h1>
+            <p class="subtitle">Peluncuran Event Bunga Sakura Jepang</p>
+        </header>
+        
+        <!-- Countdown display section -->
+        <section class="countdown-section">
+            <!-- Grid layout untuk menampilkan 4 unit waktu -->
+            <div class="countdown-grid">
+                <!-- Hari -->
+                <div class="countdown-item">
+                    <!-- Angka akan di-update oleh JavaScript -->
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Hari</div>
+                </div>
+                
+                <!-- Jam -->
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Jam</div>
+                </div>
+                
+                <!-- Menit -->
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Menit</div>
+                </div>
+                
+                <!-- Detik -->
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Detik</div>
+                </div>
+            </div>
+            
+            <!-- Pesan yang akan muncul ketika countdown selesai -->
+            <div class="event-message" id="event-message">
+                <p>Event dimulai dalam...</p>
+            </div>
+        </section>
+        
+        <!-- Footer dengan informasi tambahan -->
+        <footer class="footer">
+            <p class="event-date" id="event-date">
+                <!-- Tanggal event akan di-inject oleh JavaScript -->
+            </p>
+        </footer>
+    </main>
+    
+    <!-- Load JavaScript files - urutan penting! -->
+    <!-- 1. Sakura animation harus load dulu -->
+    <script src="js/sakura-animation.js"></script>
+    <!-- 2. Countdown logic load setelahnya -->
+    <script src="js/countdown.js"></script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+/* ====================================
+   QUIZ CARNIVAL - MAIN STYLES
+   Desain profesional dengan tema festival
+   ==================================== */
+
+/* ----- CSS VARIABLES (Custom Properties) ----- */
+/* Memudahkan maintenance dan konsistensi desain */
+:root {
+    /* Color Palette - Warna cerah tema carnival */
+    --primary-color: #FF6B6B;      /* Merah cerah */
+    --secondary-color: #4ECDC4;    /* Cyan */
+    --accent-color: #FFE66D;       /* Kuning */
+    --success-color: #95E1D3;      /* Hijau mint */
+    --warning-color: #F38181;      /* Pink salmon */
+    
+    /* Neutral Colors */
+    --dark: #2D3561;               /* Biru gelap untuk teks */
+    --light: #F7F7F7;              /* Background terang */
+    --white: #FFFFFF;
+    
+    /* Typography */
+    --font-primary: 'Poppins', sans-serif;
+    --font-size-base: 16px;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* ----- RESET & BASE STYLES ----- */
+/* Menghapus default styling browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Membuat width/height include padding & border */
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    color: var(--dark);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Gradient background untuk efek carnival */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+/* ----- MAIN CONTAINER ----- */
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    padding: var(--spacing-md);
+    position: relative;
+    z-index: 1; /* Di atas confetti */
+}
+
+/* ----- CONFETTI DECORATION ----- */
+/* Container untuk animasi confetti */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Tidak menghalangi interaksi */
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Partikel confetti individual */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-color);
+    opacity: 0.8;
+    /* Animasi akan ditambahkan via JavaScript */
+}
+
+/* ----- SCREEN MANAGEMENT ----- */
+/* Sistem untuk show/hide screen */
+.screen {
+    display: none; /* Semua screen hidden by default */
+    animation: fadeIn var(--transition-normal);
+}
+
+.screen.active {
+    display: block; /* Hanya screen aktif yang ditampilkan */
+}
+
+/* ----- CARD COMPONENT ----- */
+/* Base style untuk semua card */
+.card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.5s ease;
+}
+
+/* ----- WELCOME SCREEN ----- */
+.welcome-card {
+    text-align: center;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    /* Text gradient untuk efek menarik */
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+/* ----- INPUT GROUP ----- */
+.input-group {
+    margin-bottom: var(--spacing-lg);
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--dark);
+}
+
+.input-group input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--light);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    transition: border-color var(--transition-fast);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* ----- BUTTON STYLES ----- */
+.btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Efek lift saat hover */
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0); /* Kembali saat diklik */
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), #ff8787);
+    color: var(--white);
+}
+
+.btn-secondary {
+    background: var(--light);
+    color: var(--dark);
+}
+
+/* ----- QUIZ SCREEN ----- */
+.quiz-header {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.player-name {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.score {
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+/* ----- PROGRESS BAR ----- */
+/* Container progress bar */
+.progress-container {
+    position: relative;
+}
+
+.progress-bar {
+    height: 12px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    width: 0%; /* Akan diupdate via JavaScript */
+    transition: width 0.4s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.progress-text {
+    display: block;
+    text-align: center;
+    margin-top: var(--spacing-xs);
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+/* ----- QUESTION CARD ----- */
+.question-card {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.question-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.question-number {
+    background: linear-gradient(135deg, var(--accent-color), #ffd93d);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Tidak mengecil */
+    box-shadow: var(--shadow-sm);
+}
+
+.question-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.5;
+    flex: 1;
+}
+
+/* ----- ANSWERS CONTAINER ----- */
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    flex: 1; /* Mengisi ruang tersisa */
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ----- ANSWER OPTION ----- */
+.answer-option {
+    padding: var(--spacing-md);
+    border: 2px solid var(--light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background: var(--white);
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.answer-option:hover {
+    border-color: var(--secondary-color);
+    background: rgba(78, 205, 196, 0.05);
+    transform: translateX(8px); /* Slide ke kanan saat hover */
+}
+
+/* State: Jawaban dipilih */
+.answer-option.selected {
+    border-color: var(--primary-color);
+    background: rgba(255, 107, 107, 0.1);
+    font-weight: 600;
+}
+
+/* State: Jawaban benar (setelah submit) */
+.answer-option.correct {
+    border-color: var(--success-color);
+    background: rgba(149, 225, 211, 0.2);
+}
+
+/* State: Jawaban salah (setelah submit) */
+.answer-option.incorrect {
+    border-color: var(--warning-color);
+    background: rgba(243, 129, 129, 0.2);
+}
+
+/* ----- QUIZ ACTIONS ----- */
+.quiz-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: space-between;
+}
+
+.quiz-actions .btn {
+    flex: 1; /* Tombol mengambil lebar sama */
+}
+
+/* ----- RESULT SCREEN ----- */
+.result-card {
+    text-align: center;
+}
+
+.result-icon {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-md);
+    animation: bounceIn 0.6s ease;
+}
+
+.result-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ----- RESULT STATISTICS ----- */
+.result-stats {
+    background: var(--light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.stat-value {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.result-message {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+/* ----- RESPONSIVE DESIGN ----- */
+/* Untuk layar tablet dan lebih kecil */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .question-text {
+        font-size: 1.2rem;
+    }
+    
+    .result-title {
+        font-size: 2rem;
+    }
+    
+    .card {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Untuk layar mobile */
+@media (max-width: 480px) {
+    :root {
+        --font-size-base: 14px;
+    }
+    
+    .app-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .quiz-actions {
+        flex-direction: column;
+    }
+    
+    .result-icon {
+        font-size: 3rem;
+    }
+}

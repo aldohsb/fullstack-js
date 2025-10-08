@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Carnival - Test Your Knowledge! 🎪</title>
+    
+    <!-- Link ke file CSS utama -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Link ke file CSS animasi -->
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Font Google untuk tampilan profesional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Container utama aplikasi -->
+    <div class="app-container">
+        
+        <!-- Dekorasi confetti di background -->
+        <div class="confetti-container" id="confettiContainer"></div>
+        
+        <!-- Welcome Screen - Tampilan awal -->
+        <div class="screen active" id="welcomeScreen">
+            <div class="card welcome-card">
+                <h1 class="title">🎪 Quiz Carnival 🎪</h1>
+                <p class="subtitle">Selamat datang di festival kuis! Uji pengetahuanmu dengan 10 pertanyaan seru.</p>
+                
+                <!-- Form input nama pemain -->
+                <div class="input-group">
+                    <label for="playerName">Masukkan Nama Kamu:</label>
+                    <input 
+                        type="text" 
+                        id="playerName" 
+                        placeholder="Nama kamu..." 
+                        maxlength="20"
+                    >
+                </div>
+                
+                <!-- Tombol mulai quiz -->
+                <button class="btn btn-primary" id="startBtn">
+                    Mulai Quiz 🎉
+                </button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen - Tampilan pertanyaan -->
+        <div class="screen" id="quizScreen">
+            <!-- Header dengan info progress -->
+            <div class="quiz-header">
+                <div class="player-info">
+                    <span class="player-name" id="displayName">Player</span>
+                    <span class="score" id="currentScore">Skor: 0</span>
+                </div>
+                
+                <!-- Progress bar menunjukkan kemajuan quiz -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                    <span class="progress-text" id="progressText">Pertanyaan 1 dari 10</span>
+                </div>
+            </div>
+
+            <!-- Card pertanyaan -->
+            <div class="card question-card">
+                <!-- Nomor dan pertanyaan -->
+                <div class="question-header">
+                    <span class="question-number" id="questionNumber">1</span>
+                    <h2 class="question-text" id="questionText">Loading...</h2>
+                </div>
+
+                <!-- Container untuk pilihan jawaban -->
+                <div class="answers-container" id="answersContainer">
+                    <!-- Pilihan akan di-generate oleh JavaScript -->
+                </div>
+
+                <!-- Tombol navigasi -->
+                <div class="quiz-actions">
+                    <button class="btn btn-secondary" id="prevBtn" disabled>
+                        ← Sebelumnya
+                    </button>
+                    <button class="btn btn-primary" id="nextBtn">
+                        Selanjutnya →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen - Tampilan hasil akhir -->
+        <div class="screen" id="resultScreen">
+            <div class="card result-card">
+                <!-- Icon dan pesan hasil -->
+                <div class="result-icon" id="resultIcon">🎉</div>
+                <h1 class="result-title" id="resultTitle">Selamat!</h1>
+                
+                <!-- Statistik hasil -->
+                <div class="result-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Nama:</span>
+                        <span class="stat-value" id="finalName">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Skor Akhir:</span>
+                        <span class="stat-value" id="finalScore">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Jawaban Benar:</span>
+                        <span class="stat-value" id="correctAnswers">0/10</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Akurasi:</span>
+                        <span class="stat-value" id="accuracy">0%</span>
+                    </div>
+                </div>
+
+                <!-- Pesan motivasi -->
+                <p class="result-message" id="resultMessage"></p>
+
+                <!-- Tombol main lagi -->
+                <button class="btn btn-primary" id="restartBtn">
+                    Main Lagi 🎪
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load JavaScript files -->
+    <!-- PENTING: Urutan loading harus sesuai dependensi -->
+    <script src="js/questions.js"></script>  <!-- Data pertanyaan -->
+    <script src="js/state.js"></script>      <!-- State management -->
+    <script src="js/ui.js"></script>         <!-- UI functions -->
+    <script src="js/app.js"></script>        <!-- Main application -->
+</body>
+</html>
