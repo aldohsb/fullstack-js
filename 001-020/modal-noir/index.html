@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Noir - Film Noir Style Popup</title>
+    
+    <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+    <!-- 
+        MAIN CONTAINER
+        Container utama untuk konten halaman
+    -->
+    <main class="container">
+        <!-- Hero Section dengan tema Film Noir -->
+        <section class="hero">
+            <h1 class="title">Modal Noir</h1>
+            <p class="subtitle">A Film Noir Experience</p>
+            
+            <!-- 
+                TRIGGER BUTTON
+                Button untuk membuka modal
+                data-modal-target: Menentukan ID modal yang akan dibuka
+            -->
+            <button 
+                class="btn-open" 
+                data-modal-target="noirModal"
+                aria-label="Open modal dialog"
+            >
+                Enter the Darkness
+            </button>
+        </section>
+        
+        <!-- Konten tambahan untuk konteks -->
+        <section class="content">
+            <p class="description">
+                Step into the shadows of classic cinema. Click the button above 
+                to experience a modal inspired by the dramatic lighting and 
+                mysterious atmosphere of 1940s film noir.
+            </p>
+        </section>
+    </main>
+
+    <!-- 
+        MODAL OVERLAY
+        Layer gelap semi-transparan di belakang modal
+        role="dialog": Memberitahu screen reader bahwa ini adalah dialog
+        aria-modal="true": Menandakan ini adalah modal yang mengambil fokus
+        aria-labelledby: Mereferensikan ID dari judul modal
+        aria-hidden="true": Default tersembunyi dari screen reader
+    -->
+    <div 
+        id="noirModal" 
+        class="modal-overlay" 
+        role="dialog" 
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+        aria-hidden="true"
+    >
+        <!-- 
+            MODAL CONTAINER
+            Kotak modal yang berisi konten
+        -->
+        <div class="modal-container">
+            <!-- 
+                MODAL HEADER
+                Bagian atas modal dengan judul dan tombol close
+            -->
+            <header class="modal-header">
+                <h2 id="modalTitle" class="modal-title">The Mystery Unfolds</h2>
+                
+                <!-- 
+                    CLOSE BUTTON
+                    Tombol X untuk menutup modal
+                    aria-label: Deskripsi untuk screen reader
+                    data-modal-close: Atribut untuk identifikasi JS
+                -->
+                <button 
+                    class="modal-close" 
+                    aria-label="Close modal dialog"
+                    data-modal-close
+                >
+                    <span aria-hidden="true">×</span>
+                </button>
+            </header>
+
+            <!-- 
+                MODAL BODY
+                Konten utama modal
+            -->
+            <div class="modal-body">
+                <p class="modal-text">
+                    In the dark corners of the city, where shadows dance and 
+                    secrets whisper, a story begins. The rain falls like tears 
+                    on forgotten streets, and somewhere a saxophone plays a 
+                    melancholy tune.
+                </p>
+                <p class="modal-text">
+                    This is a world of mystery, danger, and intrigue. A world 
+                    where nothing is quite as it seems, and every choice could 
+                    be your last.
+                </p>
+            </div>
+
+            <!-- 
+                MODAL FOOTER
+                Bagian bawah modal dengan action buttons
+            -->
+            <footer class="modal-footer">
+                <!-- 
+                    ACTION BUTTONS
+                    Tombol untuk interaksi pengguna
+                    Tombol pertama biasanya action utama
+                    Tombol kedua untuk cancel/close
+                -->
+                <button class="btn-primary">
+                    Continue the Story
+                </button>
+                <button class="btn-secondary" data-modal-close>
+                    Escape the Shadows
+                </button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 
+        SCRIPTS
+        Load JavaScript di akhir untuk performa optimal
+        defer: Script dijalankan setelah HTML selesai di-parse
+    -->
+    <script src="js/focusTrap.js" defer></script>
+    <script src="js/modal.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+/* 
+====================================
+   RESET & BASE STYLES
+====================================
+   Menghapus default styling browser dan mengatur base
+*/
+
+* {
+    /* Reset margin dan padding untuk semua elemen */
+    margin: 0;
+    padding: 0;
+    
+    /* Box sizing agar padding tidak menambah lebar total */
+    box-sizing: border-box;
+}
+
+/* 
+   ROOT VARIABLES
+   CSS Custom Properties untuk konsistensi warna dan nilai
+   Tema Film Noir: hitam, putih, abu-abu
+*/
+:root {
+    /* Color Palette - Film Noir theme */
+    --color-black: #0a0a0a;           /* Hitam pekat untuk background */
+    --color-dark-gray: #1a1a1a;       /* Abu gelap untuk container */
+    --color-medium-gray: #2a2a2a;     /* Abu medium untuk border */
+    --color-light-gray: #9a9a9a;      /* Abu terang untuk teks secondary */
+    --color-white: #f5f5f5;           /* Putih lembut untuk teks */
+    --color-bright-white: #ffffff;    /* Putih terang untuk highlight */
+    
+    /* Shadows - Bayangan dramatis khas Film Noir */
+    --shadow-intense: 0 20px 60px rgba(0, 0, 0, 0.9);
+    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.7);
+    --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.5);
+    
+    /* Typography */
+    --font-main: 'Georgia', serif;    /* Font serif untuk kesan klasik */
+    --font-accent: 'Arial', sans-serif;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;   /* 8px */
+    --space-sm: 1rem;     /* 16px */
+    --space-md: 1.5rem;   /* 24px */
+    --space-lg: 2rem;     /* 32px */
+    --space-xl: 3rem;     /* 48px */
+    
+    /* Transitions - Untuk animasi smooth */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* 
+====================================
+   BODY STYLING
+====================================
+*/
+body {
+    /* Font dan warna dasar */
+    font-family: var(--font-main);
+    background-color: var(--color-black);
+    color: var(--color-white);
+    
+    /* Tinggi minimum 100% viewport */
+    min-height: 100vh;
+    
+    /* Anti-aliasing untuk rendering font yang lebih smooth */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Line height untuk readability */
+    line-height: 1.6;
+}
+
+/* 
+====================================
+   MAIN CONTAINER
+====================================
+*/
+.container {
+    /* Maksimal lebar untuk readability */
+    max-width: 1200px;
+    
+    /* Center horizontal */
+    margin: 0 auto;
+    
+    /* Padding responsif */
+    padding: var(--space-xl) var(--space-md);
+    
+    /* Minimum tinggi untuk center vertical */
+    min-height: 100vh;
+    
+    /* Flexbox untuk center content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-xl);
+}
+
+/* 
+====================================
+   HERO SECTION
+====================================
+*/
+.hero {
+    /* Center text */
+    text-align: center;
+    
+    /* Spacing internal */
+    padding: var(--space-xl) 0;
+}
+
+.title {
+    /* Font size besar dan bold */
+    font-size: clamp(3rem, 8vw, 6rem);  /* Responsif dengan clamp */
+    font-weight: 700;
+    
+    /* Letter spacing untuk kesan dramatis */
+    letter-spacing: 0.1em;
+    
+    /* Text shadow untuk efek Film Noir */
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.2),
+        5px 5px 0 rgba(0, 0, 0, 0.5);
+    
+    /* Margin bawah */
+    margin-bottom: var(--space-sm);
+    
+    /* Transform uppercase untuk gaya klasik */
+    text-transform: uppercase;
+    
+    /* Warna putih terang */
+    color: var(--color-bright-white);
+}
+
+.subtitle {
+    /* Font size medium */
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    
+    /* Warna abu terang */
+    color: var(--color-light-gray);
+    
+    /* Letter spacing */
+    letter-spacing: 0.2em;
+    
+    /* Margin bawah */
+    margin-bottom: var(--space-xl);
+    
+    /* Uppercase */
+    text-transform: uppercase;
+    
+    /* Font weight light */
+    font-weight: 300;
+}
+
+/* 
+====================================
+   BUTTON STYLES
+====================================
+*/
+
+/* Button untuk membuka modal */
+.btn-open {
+    /* Font dan size */
+    font-family: var(--font-accent);
+    font-size: 1.125rem;
+    font-weight: 600;
+    
+    /* Padding internal */
+    padding: var(--space-md) var(--space-xl);
+    
+    /* Border */
+    border: 2px solid var(--color-white);
+    border-radius: 0;  /* Sharp corners untuk gaya noir */
+    
+    /* Background transparan */
+    background-color: transparent;
+    
+    /* Text color */
+    color: var(--color-white);
+    
+    /* Cursor pointer saat hover */
+    cursor: pointer;
+    
+    /* Transition smooth */
+    transition: all var(--transition-medium);
+    
+    /* Letter spacing */
+    letter-spacing: 0.1em;
+    
+    /* Text transform */
+    text-transform: uppercase;
+    
+    /* Position relative untuk pseudo-element */
+    position: relative;
+    
+    /* Overflow hidden untuk efek */
+    overflow: hidden;
+}
+
+/* Pseudo-element untuk efek hover background */
+.btn-open::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;  /* Mulai dari luar kiri */
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-white);
+    transition: left var(--transition-medium);
+    z-index: -1;  /* Di belakang text */
+}
+
+/* Hover state */
+.btn-open:hover {
+    /* Text jadi hitam */
+    color: var(--color-black);
+    
+    /* Border lebih tebal */
+    border-width: 3px;
+    
+    /* Box shadow */
+    box-shadow: var(--shadow-medium);
+}
+
+/* Animasi background slide saat hover */
+.btn-open:hover::before {
+    left: 0;  /* Slide masuk dari kiri */
+}
+
+/* Focus state untuk accessibility */
+.btn-open:focus {
+    /* Outline custom */
+    outline: 3px solid var(--color-white);
+    outline-offset: 4px;
+}
+
+/* Active state saat diklik */
+.btn-open:active {
+    transform: scale(0.98);  /* Sedikit mengecil */
+}
+
+/* 
+====================================
+   CONTENT SECTION
+====================================
+*/
+.content {
+    /* Max width lebih kecil untuk readability */
+    max-width: 800px;
+    
+    /* Center */
+    margin: 0 auto;
+    
+    /* Padding */
+    padding: var(--space-lg);
+    
+    /* Background semi-transparan */
+    background-color: rgba(26, 26, 26, 0.5);
+    
+    /* Border subtle */
+    border: 1px solid var(--color-medium-gray);
+    
+    /* Box shadow soft */
+    box-shadow: var(--shadow-soft);
+}
+
+.description {
+    /* Font size */
+    font-size: 1.125rem;
+    
+    /* Line height untuk readability */
+    line-height: 1.8;
+    
+    /* Text color */
+    color: var(--color-light-gray);
+    
+    /* Text align justify */
+    text-align: center;
+    
+    /* Letter spacing */
+    letter-spacing: 0.02em;
+}
+
+/* 
+====================================
+   RESPONSIVE DESIGN
+====================================
+*/
+
+/* Tablet dan devices kecil */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--space-lg) var(--space-sm);
+    }
+    
+    .title {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn-open {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 1rem;
+    }
+    
+    .content {
+        padding: var(--space-md);
+    }
+    
+    .description {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    :root {
+        --space-xl: 2rem;
+        --space-lg: 1.5rem;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+}

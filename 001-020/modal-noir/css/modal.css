@@ -1,0 +1,499 @@
+/* 
+====================================
+   MODAL OVERLAY
+====================================
+   Layer gelap yang menutupi seluruh halaman
+*/
+.modal-overlay {
+    /* Fixed position untuk menutupi seluruh viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Background hitam semi-transparan - gaya Film Noir */
+    background-color: rgba(0, 0, 0, 0.92);
+    
+    /* Backdrop blur untuk depth effect */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    /* Z-index tinggi agar di atas semua element */
+    z-index: 1000;
+    
+    /* Flexbox untuk center modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Padding untuk spacing di mobile */
+    padding: var(--space-md);
+    
+    /* 
+       DEFAULT STATE: HIDDEN
+       opacity 0 dan visibility hidden untuk smooth transition
+    */
+    opacity: 0;
+    visibility: hidden;
+    
+    /* Transition untuk animasi buka/tutup */
+    transition: 
+        opacity var(--transition-medium),
+        visibility var(--transition-medium);
+    
+    /* 
+       SMOOTH SCROLLING
+       Jika konten modal lebih panjang dari viewport
+    */
+    overflow-y: auto;
+    
+    /* Smooth scroll behavior */
+    scroll-behavior: smooth;
+}
+
+/* 
+   ACTIVE STATE - Modal terbuka
+   Class ini ditambahkan via JavaScript
+*/
+.modal-overlay.active {
+    opacity: 1;           /* Terlihat */
+    visibility: visible;  /* Dapat berinteraksi */
+}
+
+/* 
+====================================
+   MODAL CONTAINER
+====================================
+   Kotak modal yang berisi konten
+*/
+.modal-container {
+    /* Background gelap dengan sedikit transparansi */
+    background-color: rgba(26, 26, 26, 0.98);
+    
+    /* Max width agar tidak terlalu lebar */
+    max-width: 600px;
+    width: 100%;
+    
+    /* Border subtle dengan warna abu */
+    border: 2px solid var(--color-medium-gray);
+    
+    /* Box shadow dramatis - khas Film Noir */
+    box-shadow: 
+        var(--shadow-intense),
+        0 0 100px rgba(255, 255, 255, 0.05),
+        inset 0 0 50px rgba(0, 0, 0, 0.5);
+    
+    /* 
+       TRANSFORM DAN TRANSITION
+       Default: scale kecil dan translate ke bawah
+       Akan di-animate saat modal dibuka
+    */
+    transform: scale(0.9) translateY(20px);
+    transition: transform var(--transition-medium);
+    
+    /* Position relative untuk pseudo-elements */
+    position: relative;
+    
+    /* Max height agar bisa scroll jika konten panjang */
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* 
+   PSEUDO-ELEMENT: Efek cahaya di tepi
+   Menambah drama visual khas Film Noir
+*/
+.modal-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    
+    /* Gradient border effect */
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.03)
+    );
+    
+    /* Z-index di belakang container */
+    z-index: -1;
+    
+    /* Border radius sama dengan container */
+    border-radius: inherit;
+}
+
+/* 
+   ACTIVE STATE - Animasi masuk
+   Saat modal dibuka, scale normal dan posisi center
+*/
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* 
+====================================
+   MODAL HEADER
+====================================
+*/
+.modal-header {
+    /* Flexbox untuk layout title dan close button */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Padding */
+    padding: var(--space-lg);
+    
+    /* Border bawah */
+    border-bottom: 1px solid var(--color-medium-gray);
+    
+    /* Background gradient subtle */
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.02),
+        transparent
+    );
+}
+
+/* 
+   MODAL TITLE
+*/
+.modal-title {
+    /* Font size */
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    
+    /* Font weight */
+    font-weight: 700;
+    
+    /* Letter spacing */
+    letter-spacing: 0.05em;
+    
+    /* Text color */
+    color: var(--color-bright-white);
+    
+    /* Text shadow untuk depth */
+    text-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 255, 255, 0.1);
+    
+    /* Margin 0 untuk reset default */
+    margin: 0;
+    
+    /* Flex grow untuk mengambil space yang tersedia */
+    flex: 1;
+}
+
+/* 
+====================================
+   CLOSE BUTTON
+====================================
+*/
+.modal-close {
+    /* Size button */
+    width: 40px;
+    height: 40px;
+    
+    /* Background transparan */
+    background-color: transparent;
+    
+    /* Border */
+    border: 2px solid var(--color-medium-gray);
+    
+    /* Text color */
+    color: var(--color-white);
+    
+    /* Font size untuk × symbol */
+    font-size: 1.75rem;
+    
+    /* Line height untuk center vertical */
+    line-height: 1;
+    
+    /* Cursor pointer */
+    cursor: pointer;
+    
+    /* Transition */
+    transition: all var(--transition-fast);
+    
+    /* Flexbox untuk center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Flex shrink 0 agar tidak mengecil */
+    flex-shrink: 0;
+    
+    /* Margin left untuk spacing dari title */
+    margin-left: var(--space-md);
+}
+
+/* Hover state */
+.modal-close:hover {
+    /* Background putih */
+    background-color: var(--color-white);
+    
+    /* Text hitam */
+    color: var(--color-black);
+    
+    /* Border putih */
+    border-color: var(--color-white);
+    
+    /* Transform rotate sedikit */
+    transform: rotate(90deg);
+    
+    /* Box shadow */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Focus state untuk accessibility */
+.modal-close:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+}
+
+/* Active state */
+.modal-close:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+/* 
+====================================
+   MODAL BODY
+====================================
+*/
+.modal-body {
+    /* Padding */
+    padding: var(--space-lg);
+    
+    /* Line height untuk readability */
+    line-height: 1.8;
+}
+
+/* 
+   MODAL TEXT PARAGRAPHS
+*/
+.modal-text {
+    /* Font size */
+    font-size: 1.125rem;
+    
+    /* Color */
+    color: var(--color-light-gray);
+    
+    /* Margin bawah */
+    margin-bottom: var(--space-md);
+    
+    /* Letter spacing */
+    letter-spacing: 0.02em;
+    
+    /* Text indent untuk gaya paragraph klasik */
+    text-indent: 2rem;
+}
+
+/* Paragraph terakhir tanpa margin */
+.modal-text:last-child {
+    margin-bottom: 0;
+}
+
+/* First letter effect - gaya noir */
+.modal-text:first-of-type::first-letter {
+    /* Font size besar */
+    font-size: 3rem;
+    
+    /* Float left */
+    float: left;
+    
+    /* Line height */
+    line-height: 0.8;
+    
+    /* Margin */
+    margin: 0.1em 0.1em 0 0;
+    
+    /* Color putih terang */
+    color: var(--color-bright-white);
+    
+    /* Font weight bold */
+    font-weight: 700;
+    
+    /* Text shadow */
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 
+====================================
+   MODAL FOOTER
+====================================
+*/
+.modal-footer {
+    /* Padding */
+    padding: var(--space-lg);
+    
+    /* Border atas */
+    border-top: 1px solid var(--color-medium-gray);
+    
+    /* Background gradient */
+    background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0.02),
+        transparent
+    );
+    
+    /* Flexbox untuk layout buttons */
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: flex-end;
+    
+    /* Flex wrap untuk responsive */
+    flex-wrap: wrap;
+}
+
+/* 
+====================================
+   MODAL ACTION BUTTONS
+====================================
+*/
+
+/* Base button styles untuk modal */
+.modal-footer button {
+    /* Padding */
+    padding: var(--space-sm) var(--space-lg);
+    
+    /* Font */
+    font-family: var(--font-accent);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    
+    /* Letter spacing */
+    letter-spacing: 0.05em;
+    
+    /* Text transform */
+    text-transform: uppercase;
+    
+    /* Cursor */
+    cursor: pointer;
+    
+    /* Transition */
+    transition: all var(--transition-fast);
+    
+    /* Border radius 0 untuk sharp corners */
+    border-radius: 0;
+    
+    /* Border */
+    border: 2px solid;
+}
+
+/* PRIMARY BUTTON - Action utama */
+.btn-primary {
+    /* Background putih */
+    background-color: var(--color-white);
+    
+    /* Text hitam */
+    color: var(--color-black);
+    
+    /* Border putih */
+    border-color: var(--color-white);
+}
+
+.btn-primary:hover {
+    /* Background hitam */
+    background-color: var(--color-black);
+    
+    /* Text putih */
+    color: var(--color-white);
+    
+    /* Box shadow */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    
+    /* Transform sedikit naik */
+    transform: translateY(-2px);
+}
+
+.btn-primary:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+}
+
+/* SECONDARY BUTTON - Cancel/Close */
+.btn-secondary {
+    /* Background transparan */
+    background-color: transparent;
+    
+    /* Text putih */
+    color: var(--color-white);
+    
+    /* Border abu */
+    border-color: var(--color-medium-gray);
+}
+
+.btn-secondary:hover {
+    /* Background abu gelap */
+    background-color: var(--color-medium-gray);
+    
+    /* Border lebih terang */
+    border-color: var(--color-light-gray);
+    
+    /* Transform */
+    transform: translateY(-2px);
+}
+
+.btn-secondary:focus {
+    outline: 2px solid var(--color-light-gray);
+    outline-offset: 2px;
+}
+
+/* 
+====================================
+   RESPONSIVE DESIGN
+====================================
+*/
+
+/* Tablet dan mobile */
+@media (max-width: 768px) {
+    .modal-container {
+        max-width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: var(--space-md);
+    }
+    
+    .modal-title {
+        font-size: 1.5rem;
+    }
+    
+    .modal-text {
+        font-size: 1rem;
+        text-indent: 1.5rem;
+    }
+    
+    /* Buttons stack vertical di mobile */
+    .modal-footer {
+        flex-direction: column-reverse;
+    }
+    
+    .modal-footer button {
+        width: 100%;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: var(--space-sm);
+    }
+    
+    .modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+    }
+    
+    .modal-text:first-of-type::first-letter {
+        font-size: 2rem;
+    }
+}

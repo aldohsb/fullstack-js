@@ -1,0 +1,404 @@
+/* ========================================
+   RESET & VARIABEL CSS
+   ======================================== */
+
+/* Reset margin dan padding default browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Memastikan padding tidak menambah ukuran elemen */
+}
+
+/* Variabel CSS untuk tema warna padang pasir */
+:root {
+    /* Warna tema dune/desert */
+    --sand-light: #F5E6D3;
+    --sand-medium: #E8D4B8;
+    --sand-dark: #D4B896;
+    --sand-darker: #C19A6B;
+    --desert-orange: #E8A87C;
+    --shadow-color: rgba(193, 154, 107, 0.3);
+    
+    /* Spacing & sizing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    
+    /* Transitions untuk animasi smooth */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ========================================
+   LAYOUT UTAMA
+   ======================================== */
+
+/* Styling body dengan font dan background tema desert */
+body {
+    font-family: 'Outfit', sans-serif; /* Font modern dan clean */
+    background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand-medium) 100%);
+    min-height: 100vh; /* Minimal tinggi 100% viewport */
+    color: var(--sand-darker);
+    overflow-x: hidden; /* Mencegah horizontal scroll */
+    position: relative;
+}
+
+/* Background animasi desert dengan efek angin */
+.desert-background {
+    position: fixed; /* Fixed agar tetap di tempat saat scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Di belakang konten */
+    overflow: hidden;
+    pointer-events: none; /* Tidak mengganggu interaksi user */
+}
+
+/* Partikel angin yang bergerak melintasi layar */
+.wind-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--sand-dark);
+    border-radius: 50%; /* Membuat bulat sempurna */
+    opacity: 0.4;
+    
+    /* Animasi bergerak dari kiri ke kanan */
+    animation: windBlow 15s linear infinite;
+}
+
+/* Membuat variasi posisi untuk setiap partikel */
+.wind-particle:nth-child(1) {
+    top: 20%;
+    animation-delay: 0s;
+    animation-duration: 12s;
+}
+
+.wind-particle:nth-child(2) {
+    top: 50%;
+    animation-delay: 4s;
+    animation-duration: 18s;
+}
+
+.wind-particle:nth-child(3) {
+    top: 80%;
+    animation-delay: 8s;
+    animation-duration: 15s;
+}
+
+/* Keyframe animasi angin bergerak horizontal */
+@keyframes windBlow {
+    0% {
+        left: -5%;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.2); /* Naik sedikit di tengah */
+    }
+    100% {
+        left: 105%;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Container utama dengan max-width dan centering */
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* Center horizontal */
+    padding: var(--spacing-lg);
+    position: relative;
+    z-index: 1; /* Di atas background */
+}
+
+/* ========================================
+   HEADER SECTION
+   ======================================== */
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    animation: fadeInDown 0.8s ease; /* Animasi masuk dari atas */
+}
+
+/* Judul utama dengan efek shadow dan gradient */
+.title {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
+    font-weight: 700;
+    color: var(--sand-darker);
+    text-shadow: 2px 2px 4px var(--shadow-color);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.5px; /* Tight spacing untuk modern look */
+}
+
+/* Subtitle dengan warna lebih soft */
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 300;
+    color: var(--sand-dark);
+    opacity: 0.9;
+}
+
+/* Animasi fade in dari atas */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   GALLERY GRID SYSTEM
+   ======================================== */
+
+/* Grid layout untuk galeri dengan responsive columns */
+.gallery-grid {
+    display: grid;
+    /* Otomatis membuat kolom dengan minimum 250px dan maksimal 1fr */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-md); /* Jarak antar item */
+    margin-bottom: var(--spacing-xl);
+    animation: fadeInUp 1s ease; /* Animasi masuk dari bawah */
+}
+
+/* Animasi fade in dari bawah */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   GALLERY ITEM STYLING
+   ======================================== */
+
+/* Style untuk setiap item galeri */
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4/3; /* Rasio 4:3 untuk konsistensi */
+    border-radius: var(--radius-md);
+    overflow: hidden; /* Menyembunyikan overflow gambar */
+    cursor: grab; /* Cursor grab untuk indikasi bisa di-drag */
+    
+    /* Shadow bertingkat untuk depth effect */
+    box-shadow: 
+        0 4px 6px var(--shadow-color),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+    
+    /* Transisi smooth untuk semua properti */
+    transition: 
+        transform var(--transition-medium),
+        box-shadow var(--transition-medium),
+        opacity var(--transition-fast);
+    
+    /* Background gradient sebagai fallback */
+    background: linear-gradient(135deg, var(--sand-medium), var(--sand-dark));
+}
+
+/* Hover effect - lift & enhance shadow */
+.gallery-item:hover {
+    transform: translateY(-8px) scale(1.02); /* Naik sedikit dan sedikit lebih besar */
+    box-shadow: 
+        0 12px 24px var(--shadow-color),
+        0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Style saat item sedang di-drag */
+.gallery-item.dragging {
+    opacity: 0.5; /* Transparansi untuk visual feedback */
+    cursor: grabbing; /* Cursor berubah saat grabbing */
+    transform: rotate(5deg) scale(0.95); /* Rotasi & scale untuk efek dinamis */
+    z-index: 1000; /* Di atas semua element */
+}
+
+/* Style saat item adalah drop target (hover area) */
+.gallery-item.drag-over {
+    /* Border visual untuk menunjukkan drop zone */
+    outline: 3px dashed var(--desert-orange);
+    outline-offset: -3px;
+    background: var(--sand-light);
+    transform: scale(0.95); /* Sedikit mengecil untuk visual feedback */
+}
+
+/* ========================================
+   IMAGE STYLING
+   ======================================== */
+
+/* Styling gambar dalam item */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop proporsional tanpa distorsi */
+    display: block; /* Menghilangkan space di bawah inline element */
+    transition: transform var(--transition-medium);
+    
+    /* Prevent image drag default behavior */
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Image zoom effect saat hover pada item */
+.gallery-item:hover img {
+    transform: scale(1.05); /* Zoom in sedikit */
+}
+
+/* ========================================
+   OVERLAY & CAPTION
+   ======================================== */
+
+/* Overlay gradient di atas gambar */
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Gradient dari transparan ke semi-transparan */
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 60%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    opacity: 0; /* Hidden by default */
+    transition: opacity var(--transition-medium);
+    pointer-events: none; /* Tidak mengganggu interaksi */
+}
+
+/* Show overlay saat hover */
+.gallery-item:hover::before {
+    opacity: 1;
+}
+
+/* Caption text di dalam item */
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-sm);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: center;
+    transform: translateY(100%); /* Hidden di bawah */
+    transition: transform var(--transition-medium);
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Show caption saat hover */
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0); /* Slide up */
+}
+
+/* ========================================
+   FOOTER SECTION
+   ======================================== */
+
+.footer {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+}
+
+/* Info text dengan icon */
+.info-text {
+    font-size: 0.95rem;
+    color: var(--sand-dark);
+    font-weight: 300;
+    opacity: 0.8;
+    
+    /* Animasi subtle pulse untuk menarik perhatian */
+    animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Animasi pulse subtle */
+@keyframes subtlePulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet dan device menengah */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .gallery-grid {
+        /* Grid 2 kolom untuk tablet */
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .header {
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    .container {
+        padding: var(--spacing-sm);
+    }
+    
+    .gallery-grid {
+        /* Grid 1 kolom untuk mobile */
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY & UX ENHANCEMENTS
+   ======================================== */
+
+/* Focus state untuk keyboard navigation */
+.gallery-item:focus {
+    outline: 3px solid var(--desert-orange);
+    outline-offset: 2px;
+}
+
+/* Reduced motion untuk users dengan preferensi accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

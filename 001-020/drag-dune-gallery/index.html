@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Meta tags untuk SEO dan responsivitas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galeri interaktif dengan drag & drop bertema padang pasir">
+    
+    <title>Drag Dune Gallery</title>
+    
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Google Fonts untuk tipografi profesional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Container utama dengan efek angin background -->
+    <div class="desert-background">
+        <!-- Partikel angin animasi (dekoratif) -->
+        <div class="wind-particle"></div>
+        <div class="wind-particle"></div>
+        <div class="wind-particle"></div>
+    </div>
+
+    <!-- Container konten utama -->
+    <main class="container">
+        <!-- Header dengan judul dan instruksi -->
+        <header class="header">
+            <h1 class="title">Drag Dune Gallery</h1>
+            <p class="subtitle">Seret gambar untuk menyusun ulang galeri Anda</p>
+        </header>
+
+        <!-- Grid galeri - tempat gambar-gambar ditampilkan -->
+        <!-- Grid ini akan diisi secara dinamis oleh JavaScript -->
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- 
+                Item galeri akan ditambahkan di sini via JavaScript
+                Setiap item memiliki atribut:
+                - draggable="true": memungkinkan item untuk di-drag
+                - data-id: identifier unik untuk setiap item
+            -->
+        </div>
+
+        <!-- Informasi tambahan di footer -->
+        <footer class="footer">
+            <p class="info-text">💡 Tip: Klik dan tahan gambar, lalu seret ke posisi baru</p>
+        </footer>
+    </main>
+
+    <!-- Script JavaScript dimuat di akhir body untuk performa optimal -->
+    <!-- defer memastikan script dieksekusi setelah HTML selesai di-parse -->
+    <script src="js/script.js" defer></script>
+</body>
+</html>
