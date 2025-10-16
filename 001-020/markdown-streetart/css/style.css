@@ -1,0 +1,544 @@
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+
+/* Reset default margin dan padding browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Agar width include padding dan border */
+}
+
+/* Variabel CSS untuk konsistensi warna dan spacing */
+:root {
+    /* Palet warna tema street art */
+    --color-primary: #FF6B35;      /* Orange graffiti */
+    --color-secondary: #F7931E;    /* Kuning spray */
+    --color-accent: #00D9FF;       /* Cyan neon */
+    --color-dark: #1a1a1a;         /* Hitam gelap */
+    --color-wall: #8B7355;         /* Coklat tembok */
+    --color-concrete: #A8A8A8;     /* Abu-abu beton */
+    
+    /* Spacing konsisten */
+    --spacing-xs: 0.5rem;   /* 8px */
+    --spacing-sm: 1rem;     /* 16px */
+    --spacing-md: 1.5rem;   /* 24px */
+    --spacing-lg: 2rem;     /* 32px */
+    --spacing-xl: 3rem;     /* 48px */
+    
+    /* Font families */
+    --font-graffiti: 'Permanent Marker', cursive;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* ========================================
+   BODY & LAYOUT UTAMA
+   ======================================== */
+
+body {
+    /* Background dengan tekstur concrete/aspal */
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    
+    /* Font default untuk seluruh body */
+    font-family: var(--font-body);
+    color: #f0f0f0;
+    
+    /* Tinggi minimum 100vh agar footer di bawah */
+    min-height: 100vh;
+    
+    /* Padding untuk mobile responsiveness */
+    padding: var(--spacing-sm);
+}
+
+/* Container utama dengan max-width */
+.container {
+    max-width: 1400px;
+    margin: 0 auto; /* Center horizontal */
+    
+    /* Shadow untuk depth */
+    background: rgba(26, 26, 26, 0.6);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    
+    /* Backdrop blur untuk efek glass morphism */
+    backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   HEADER - JUDUL GRAFFITI
+   ======================================== */
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    
+    /* Border bawah dengan gradient */
+    border-bottom: 3px solid;
+    border-image: linear-gradient(
+        90deg, 
+        var(--color-primary), 
+        var(--color-secondary), 
+        var(--color-accent)
+    ) 1;
+}
+
+.title {
+    /* Font besar untuk impact */
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
+    font-family: var(--font-graffiti);
+    margin-bottom: var(--spacing-sm);
+    
+    /* Text transform uppercase untuk gaya graffiti */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Styling untuk setiap kata dalam judul */
+.graffiti-text {
+    display: inline-block;
+    
+    /* Text shadow berlapis untuk efek 3D spray paint */
+    text-shadow: 
+        3px 3px 0 var(--color-primary),      /* Layer 1: orange */
+        6px 6px 0 var(--color-secondary),    /* Layer 2: kuning */
+        9px 9px 0 rgba(0, 0, 0, 0.3),        /* Layer 3: shadow */
+        12px 12px 20px rgba(0, 0, 0, 0.5);   /* Layer 4: glow */
+    
+    /* Animasi subtle hover */
+    transition: transform 0.3s ease;
+}
+
+/* Warna khusus untuk kata "STREETART" */
+.graffiti-text.highlight {
+    color: var(--color-accent);
+    text-shadow: 
+        3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-primary),
+        9px 9px 0 rgba(0, 0, 0, 0.3),
+        12px 12px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* Efek hover pada judul */
+.graffiti-text:hover {
+    transform: translateY(-2px) rotate(-1deg);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--color-concrete);
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* ========================================
+   MAIN CONTENT - GRID LAYOUT
+   ======================================== */
+
+.main-content {
+    /* CSS Grid untuk 2 kolom responsive */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Styling untuk setiap section (editor & preview) */
+.editor-section,
+.preview-section {
+    /* Background dengan transparansi */
+    background: rgba(40, 40, 40, 0.6);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    
+    /* Border dengan warna accent */
+    border: 2px solid rgba(255, 107, 53, 0.3);
+    
+    /* Transisi smooth untuk hover */
+    transition: border-color 0.3s ease;
+}
+
+/* Efek hover pada section */
+.editor-section:hover,
+.preview-section:hover {
+    border-color: var(--color-primary);
+}
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    
+    /* Border bawah untuk pemisah */
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-title {
+    font-family: var(--font-graffiti);
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    
+    /* Text shadow untuk readability */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: var(--color-concrete);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* ========================================
+   TEXTAREA EDITOR
+   ======================================== */
+
+.editor-textarea {
+    width: 100%;
+    min-height: 500px;
+    
+    /* Styling textarea */
+    background: rgba(20, 20, 20, 0.8);
+    color: #f0f0f0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: var(--spacing-md);
+    
+    /* Font monospace untuk code editor feel */
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    
+    /* Resize hanya vertikal */
+    resize: vertical;
+    
+    /* Smooth transition untuk focus */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Styling saat textarea di-focus */
+.editor-textarea:focus {
+    /* Hilangkan outline default browser */
+    outline: none;
+    
+    /* Border berwarna saat focus */
+    border-color: var(--color-primary);
+    
+    /* Glow effect saat focus */
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+/* Styling placeholder text */
+.editor-textarea::placeholder {
+    color: rgba(168, 168, 168, 0.5);
+}
+
+/* ========================================
+   PREVIEW CONTENT - TEKSTUR TEMBOK
+   ======================================== */
+
+.preview-content {
+    min-height: 500px;
+    padding: var(--spacing-lg);
+    
+    /* Background base untuk preview */
+    background: rgba(139, 115, 85, 0.1);
+    border-radius: 6px;
+    
+    /* Overflow untuk konten panjang */
+    overflow-y: auto;
+    
+    /* Custom scrollbar untuk preview */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) rgba(0, 0, 0, 0.3);
+}
+
+/* Custom scrollbar untuk Webkit browsers (Chrome, Safari) */
+.preview-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.preview-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.preview-content::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+.preview-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
+}
+
+/* Efek tekstur tembok bata menggunakan gradient */
+.brick-wall {
+    background-image: 
+        /* Garis horizontal untuk baris bata */
+        repeating-linear-gradient(
+            0deg,
+            rgba(139, 115, 85, 0.1),
+            rgba(139, 115, 85, 0.1) 1px,
+            transparent 1px,
+            transparent 60px
+        ),
+        /* Garis vertikal untuk kolom bata (offset) */
+        repeating-linear-gradient(
+            90deg,
+            rgba(139, 115, 85, 0.1),
+            rgba(139, 115, 85, 0.1) 1px,
+            transparent 1px,
+            transparent 120px
+        );
+    background-size: 100% 60px, 120px 100%;
+    background-position: 0 0, 60px 30px;
+}
+
+/* State kosong saat belum ada input */
+.empty-state {
+    color: var(--color-concrete);
+    font-style: italic;
+    opacity: 0.5;
+    text-align: center;
+    padding-top: var(--spacing-xl);
+}
+
+/* ========================================
+   STYLING MARKDOWN ELEMENTS DI PREVIEW
+   ======================================== */
+
+/* Heading dengan style graffiti */
+.preview-content h1,
+.preview-content h2,
+.preview-content h3 {
+    font-family: var(--font-graffiti);
+    color: var(--color-primary);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    
+    /* Text shadow untuk depth */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.preview-content h1 {
+    font-size: 2.5rem;
+    border-bottom: 3px solid var(--color-secondary);
+    padding-bottom: var(--spacing-xs);
+}
+
+.preview-content h2 {
+    font-size: 2rem;
+    color: var(--color-secondary);
+}
+
+.preview-content h3 {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+}
+
+/* Paragraph spacing */
+.preview-content p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+/* Bold text dengan warna accent */
+.preview-content strong {
+    color: var(--color-secondary);
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Italic text */
+.preview-content em {
+    color: var(--color-accent);
+    font-style: italic;
+}
+
+/* Link dengan hover effect */
+.preview-content a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-accent);
+    
+    /* Transisi smooth */
+    transition: all 0.3s ease;
+}
+
+.preview-content a:hover {
+    color: var(--color-secondary);
+    border-bottom-color: var(--color-secondary);
+    background: rgba(247, 147, 30, 0.1);
+    padding: 2px 4px;
+}
+
+/* Inline code dengan background */
+.preview-content code {
+    background: rgba(0, 217, 255, 0.1);
+    color: var(--color-accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid rgba(0, 217, 255, 0.3);
+}
+
+/* Block code (preformatted) */
+.preview-content pre {
+    background: rgba(20, 20, 20, 0.8);
+    padding: var(--spacing-md);
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: var(--spacing-md) 0;
+    border-left: 4px solid var(--color-primary);
+}
+
+.preview-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Unordered list */
+.preview-content ul {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.preview-content ul li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.6;
+    
+    /* Custom bullet dengan emoji spray */
+    list-style: none;
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.preview-content ul li::before {
+    content: "🎨";
+    position: absolute;
+    left: 0;
+}
+
+/* Ordered list */
+.preview-content ol {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.preview-content ol li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.6;
+    padding-left: var(--spacing-xs);
+}
+
+/* Blockquote dengan style graffiti */
+.preview-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    background: rgba(255, 107, 53, 0.1);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    font-style: italic;
+    color: var(--color-concrete);
+}
+
+/* Horizontal rule */
+.preview-content hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-primary),
+        var(--color-secondary),
+        var(--color-accent),
+        transparent
+    );
+    margin: var(--spacing-lg) 0;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-concrete);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
+    /* Kurangi padding container */
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    /* Grid menjadi 1 kolom */
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    /* Kurangi tinggi minimum */
+    .editor-textarea,
+    .preview-content {
+        min-height: 300px;
+    }
+    
+    /* Ukuran font lebih kecil */
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    /* Stack header section */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+}
+
+/* Mobile kecil */
+@media (max-width: 480px) {
+    body {
+        padding: var(--spacing-xs);
+    }
+    
+    .container {
+        padding: var(--spacing-sm);
+    }
+    
+    .title {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .graffiti-text {
+        /* Kurangi shadow untuk mobile */
+        text-shadow: 
+            2px 2px 0 var(--color-primary),
+            4px 4px 0 var(--color-secondary),
+            6px 6px 10px rgba(0, 0, 0, 0.5);
+    }
+}

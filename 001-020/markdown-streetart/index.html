@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Metadata dokumen -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Judul halaman yang muncul di tab browser -->
+    <title>Markdown StreetArt - Graffiti Style Previewer</title>
+    
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Google Fonts untuk tema graffiti -->
+    <!-- Permanent Marker: font utama bergaya spray paint -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Container utama aplikasi -->
+    <div class="container">
+        
+        <!-- Header dengan judul bergaya graffiti -->
+        <header class="header">
+            <h1 class="title">
+                <!-- Span untuk efek outline graffiti -->
+                <span class="graffiti-text">MARKDOWN</span>
+                <span class="graffiti-text highlight">STREETART</span>
+            </h1>
+            <p class="subtitle">Write in Markdown, Preview in Graffiti Style 🎨</p>
+        </header>
+
+        <!-- Area utama dengan 2 kolom: editor dan preview -->
+        <main class="main-content">
+            
+            <!-- Kolom kiri: Editor untuk input markdown -->
+            <section class="editor-section">
+                <!-- Label untuk textarea -->
+                <div class="section-header">
+                    <h2 class="section-title">✍️ Editor</h2>
+                    <span class="hint">Tulis markdown di sini</span>
+                </div>
+                
+                <!-- Textarea untuk menulis markdown -->
+                <!-- id="editor": untuk referensi di JavaScript -->
+                <!-- spellcheck="false": matikan spell check untuk code -->
+                <textarea 
+                    id="editor" 
+                    class="editor-textarea" 
+                    placeholder="# Selamat Datang di StreetArt&#10;&#10;Tulis **markdown** kamu di sini...&#10;&#10;## Contoh Syntax:&#10;- **Bold Text**&#10;- *Italic Text*&#10;- [Link](https://example.com)&#10;- `code`"
+                    spellcheck="false"
+                ></textarea>
+            </section>
+
+            <!-- Kolom kanan: Preview hasil render markdown -->
+            <section class="preview-section">
+                <!-- Label untuk area preview -->
+                <div class="section-header">
+                    <h2 class="section-title">👁️ Preview</h2>
+                    <span class="hint">Hasil render real-time</span>
+                </div>
+                
+                <!-- Div untuk menampilkan hasil markdown yang sudah di-parse -->
+                <!-- id="preview": untuk referensi di JavaScript -->
+                <!-- class="brick-wall": efek tekstur tembok bata -->
+                <div id="preview" class="preview-content brick-wall">
+                    <!-- Konten akan di-generate oleh JavaScript -->
+                    <p class="empty-state">Mulai menulis untuk melihat preview...</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer dengan informasi singkat -->
+        <footer class="footer">
+            <p>Belajar Parsing & Sanitasi Markdown | 2025</p>
+        </footer>
+
+    </div>
+
+    <!-- Load semua file JavaScript dengan urutan yang benar -->
+    <!-- Urutan penting karena ada dependency antar file -->
+    
+    <!-- 1. Parser: fungsi untuk convert markdown ke HTML -->
+    <script src="js/parser.js"></script>
+    
+    <!-- 2. Sanitizer: fungsi untuk membersihkan HTML dari XSS -->
+    <script src="js/sanitizer.js"></script>
+    
+    <!-- 3. App: file utama yang menggunakan parser dan sanitizer -->
+    <script src="js/app.js"></script>
+</body>
+</html>
