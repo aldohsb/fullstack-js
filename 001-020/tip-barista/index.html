@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!-- 
+  Proyek: TIP BARISTA
+  Fungsi: Kalkulator tip dengan tema kedai kopi modern
+  Teknologi: HTML, CSS, JavaScript
+  Teknik yang dipelajari: Form Validation & Number Formatting
+-->
+
+<html lang="id">
+<head>
+  <!-- Meta tag untuk karakter Indonesia dan responsif -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Judul yang tampil di tab browser -->
+  <title>Tip Barista - Kalkulator Tip Kedai Kopi Modern</title>
+  
+  <!-- Link ke file CSS eksternal untuk styling -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Container utama aplikasi dengan class untuk styling -->
+  <div class="container">
+    
+    <!-- Header/Judul aplikasi -->
+    <header class="header">
+      <h1 class="title">☕ Tip Barista</h1>
+      <p class="subtitle">Kalkulator Tip untuk Barista Favorit Anda</p>
+    </header>
+
+    <!-- Section form input - tempat pengguna memasukkan data -->
+    <section class="form-section">
+      
+      <!-- Group input untuk jumlah bill/tagihan -->
+      <div class="input-group">
+        <!-- Label: penjelasan untuk input -->
+        <label for="bill">💰 Jumlah Bill (Tagihan)</label>
+        
+        <!-- Input bill dengan tipe number, validation attributes -->
+        <!-- 
+          Penjelasan:
+          - id="bill": untuk identifikasi unik di JavaScript
+          - type="number": hanya terima input angka
+          - min="0": tidak boleh angka negatif
+          - step="1000": increment by 1000 (optional)
+          - placeholder: teks hint saat input kosong
+          - required: HTML validation - wajib diisi
+        -->
+        <input
+          id="bill"
+          type="number"
+          min="0"
+          step="1000"
+          placeholder="Contoh: 150000"
+          required
+          aria-label="Masukkan jumlah tagihan"
+        >
+        
+        <!-- Elemen untuk tampilkan error message validasi -->
+        <!-- Awalnya hidden, akan ditampilkan jika ada error -->
+        <span id="billError" class="error-message"></span>
+      </div>
+
+      <!-- Group input untuk persentase tip -->
+      <div class="input-group">
+        <!-- Label dengan span untuk tampilkan nilai current (akan update real-time) -->
+        <label for="tipPercentage">
+          🎁 Persentase Tip: <span id="percentageDisplay">15</span>%
+        </label>
+        
+        <!-- Input range (slider) untuk pilih persentase 0-100 -->
+        <!-- 
+          Penjelasan:
+          - type="range": tampil sebagai slider
+          - min="0" max="100": range 0-100%
+          - value="15": default 15% (standard tip)
+          - step="1": increment by 1% per drag
+          - aria-label: untuk accessibility (screen reader)
+        -->
+        <input
+          id="tipPercentage"
+          type="range"
+          min="0"
+          max="100"
+          value="15"
+          step="1"
+          aria-label="Pilih persentase tip"
+        >
+        
+        <!-- Visual display bawah slider untuk lihat range -->
+        <div class="range-labels">
+          <span>0%</span>
+          <span>50%</span>
+          <span>100%</span>
+        </div>
+      </div>
+
+      <!-- Group input untuk jumlah orang (optional) -->
+      <div class="input-group">
+        <label for="people">👥 Jumlah Orang (Opsional)</label>
+        
+        <!-- Input untuk jumlah orang yang berbagi tip -->
+        <!-- 
+          Penjelasan:
+          - min="1": minimal 1 orang
+          - value="1": default 1 orang
+          - Untuk hitung tip per orang
+        -->
+        <input
+          id="people"
+          type="number"
+          min="1"
+          value="1"
+          step="1"
+          aria-label="Masukkan jumlah orang"
+        >
+      </div>
+
+    </section>
+
+    <!-- Section hasil/output - tampilkan hasil perhitungan -->
+    <section class="result-section">
+      
+      <!-- Card 1: Jumlah Tip -->
+      <div class="result-card">
+        <h3 class="result-label">Jumlah Tip</h3>
+        <!-- 
+          id="tipAmount": untuk akses dari JavaScript
+          data-value: menyimpan nilai numerik (bukan formatted)
+          Teks awal "Rp 0" akan diganti dengan hasil perhitungan
+        -->
+        <p id="tipAmount" class="result-value" data-value="0">Rp 0</p>
+      </div>
+
+      <!-- Card 2: Total (Bill + Tip) -->
+      <div class="result-card">
+        <h3 class="result-label">Total (Bill + Tip)</h3>
+        <!-- 
+          id="totalAmount": untuk akses dari JavaScript
+          Akan menampilkan total yang harus dibayar
+        -->
+        <p id="totalAmount" class="result-value" data-value="0">Rp 0</p>
+      </div>
+
+      <!-- Card 3: Tip per Orang (jika > 1 orang) -->
+      <div class="result-card">
+        <h3 class="result-label">Tip Per Orang</h3>
+        <!-- 
+          id="tipPerPerson": untuk akses dari JavaScript
+          Menampilkan tip yang dibagi rata ke jumlah orang
+        -->
+        <p id="tipPerPerson" class="result-value" data-value="0">Rp 0</p>
+      </div>
+
+    </section>
+
+    <!-- Section breakdown detail -->
+    <section class="breakdown-section">
+      <h2>📊 Detail Perhitungan</h2>
+      
+      <!-- Table untuk tampilkan breakdown -->
+      <!-- 
+        Struktur tabel untuk clarity:
+        - Kolom kiri: label (apa yang dihitung)
+        - Kolom kanan: nilai (hasil perhitungan)
+      -->
+      <table class="breakdown-table">
+        <tbody>
+          <!-- Baris 1: Detail bill -->
+          <tr>
+            <td class="breakdown-label">Jumlah Bill</td>
+            <td id="breakdownBill" class="breakdown-value">Rp 0</td>
+          </tr>
+          
+          <!-- Baris 2: Detail persentase tip -->
+          <tr>
+            <td class="breakdown-label">Persentase Tip</td>
+            <td id="breakdownPercentage" class="breakdown-value">0%</td>
+          </tr>
+          
+          <!-- Baris 3: Detail jumlah tip -->
+          <tr class="breakdown-highlight">
+            <td class="breakdown-label"><strong>Jumlah Tip</strong></td>
+            <td id="breakdownTip" class="breakdown-value"><strong>Rp 0</strong></td>
+          </tr>
+          
+          <!-- Baris 4: Detail total -->
+          <tr class="breakdown-highlight">
+            <td class="breakdown-label"><strong>Total Pembayaran</strong></td>
+            <td id="breakdownTotal" class="breakdown-value"><strong>Rp 0</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Button reset untuk clear semua input -->
+    <section class="button-section">
+      <!-- 
+        Button reset:
+        - onclick="resetForm()": panggil fungsi reset saat diklik
+        - class="btn-reset": styling dari CSS
+      -->
+      <button id="resetBtn" class="btn-reset" aria-label="Reset semua input">
+        🔄 Reset
+      </button>
+    </section>
+
+  </div>
+
+  <!-- Link ke file JavaScript eksternal untuk logic aplikasi -->
+  <!-- 
+    defer: file di-load setelah HTML selesai di-parse
+    ini memastikan semua element HTML sudah tersedia saat JS running
+  -->
+  <script src="js/app.js" defer></script>
+</body>
+</html>

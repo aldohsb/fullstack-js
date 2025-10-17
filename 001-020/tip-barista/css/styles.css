@@ -1,0 +1,502 @@
+/* 
+  FILE: styles.css
+  FUNGSI: Styling aplikasi Tip Barista
+  TEKNIK: CSS Grid, Custom Properties, Gradient, Transitions
+  PALET: Coklat latte, cream, modern minimalist
+*/
+
+/* ===== ROOT VARIABLES (CSS Custom Properties) ===== */
+/* 
+  Menggunakan CSS variables untuk:
+  - Kemudahan maintenance (change 1x, update dimana-mana)
+  - Consistency (warna sama di semua tempat)
+  - Scalability (mudah bikin tema baru)
+*/
+:root {
+  /* Palet warna tema Coklat Latte */
+  --color-primary: #8B6F47;      /* Coklat utama (latte) */
+  --color-secondary: #A0826D;    /* Coklat muda */
+  --color-accent: #D4A574;       /* Coklat terang (cream) */
+  --color-light: #F5E6D3;        /* Background light */
+  --color-dark: #3E2723;         /* Text dark */
+  --color-success: #66BB6A;      /* Hijau untuk valid */
+  --color-error: #EF5350;        /* Merah untuk error */
+  --color-white: #FFFFFF;        /* Putih */
+
+  /* Typography */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  --font-size-heading: 28px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Shadow untuk kedalaman */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  /* Transition untuk animasi smooth */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+}
+
+/* ===== RESET & BASE STYLES ===== */
+/* 
+  Reset default browser styling untuk konsistensi
+  Box-sizing: border-box membuat padding/border bagian dari width
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styling body - background & font */
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  color: var(--color-dark);
+  background: linear-gradient(135deg, var(--color-light) 0%, #EFD9BF 100%);
+  min-height: 100vh;
+  padding: var(--space-md);
+  line-height: 1.6;
+}
+
+/* ===== CONTAINER & LAYOUT ===== */
+/* 
+  Container: wrapper utama aplikasi
+  Max-width: batasan lebar untuk readability
+  Margin auto: center di tengah
+  CSS Grid: modern layout technique
+*/
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Animasi fade-in saat page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: var(--radius-lg);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+/* Judul utama */
+.title {
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.5px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: var(--font-size-small);
+  opacity: 0.95;
+  font-weight: var(--font-weight-normal);
+}
+
+/* ===== FORM SECTION ===== */
+.form-section {
+  display: grid;
+  gap: var(--space-md);
+  background: var(--color-white);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== INPUT GROUP ===== */
+/* 
+  Input group: wrapper untuk label + input + error message
+  Grid layout untuk stack vertical
+*/
+.input-group {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+/* Label styling */
+label {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+  font-size: var(--font-size-small);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Input text & number - base styling */
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  padding: var(--space-md);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body);
+  font-family: var(--font-family);
+  background-color: var(--color-light);
+  transition: var(--transition-fast);
+  /* Hapus default spinner number input untuk custom style */
+  /* Optional: bisa dikustomisasi lebih lanjut */
+}
+
+/* Focus state - saat input diklik/active */
+input[type="number"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1);
+}
+
+/* Invalid state - saat input tidak valid */
+input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-error);
+  background-color: rgba(239, 83, 80, 0.05);
+}
+
+/* ===== RANGE SLIDER (Persentase Tip) ===== */
+/* 
+  Styling range input untuk slider modern
+  Track: bagian yang bisa di-drag
+  Thumb: pegangan drag
+*/
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent) 0%,
+    var(--color-primary) 100%
+  );
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Thumb untuk WebKit browsers (Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-fast);
+}
+
+/* Hover state thumb WebKit */
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Thumb untuk Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-fast);
+}
+
+/* Hover state thumb Firefox */
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===== RANGE LABELS ===== */
+/* 
+  Tampilkan min-mid-max label di bawah slider
+  Flexbox untuk spacing merata
+*/
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-small);
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-bold);
+  margin-top: var(--space-xs);
+}
+
+/* ===== ERROR MESSAGE ===== */
+/* 
+  Error message styling
+  Awalnya kosong/hidden, tampil saat ada error
+*/
+.error-message {
+  font-size: var(--font-size-small);
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+  /* 
+    Min-height: reserve space agar layout tidak shift
+    Tapi text-nya kosong awalnya
+  */
+  min-height: 20px;
+  display: block;
+  margin-top: -8px;
+}
+
+/* ===== RESULT SECTION ===== */
+/* 
+  Result section: display hasil perhitungan
+  Grid 3 kolom untuk hasil cards
+  Responsive: jadi 1 kolom di mobile
+*/
+.result-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ===== RESULT CARD ===== */
+/* 
+  Card untuk display satu result item
+  Box shadow untuk kedalaman
+  Gradient background tema kopi
+*/
+.result-card {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-light) 100%);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 2px solid rgba(139, 111, 71, 0.1);
+  transition: var(--transition-normal);
+}
+
+/* Hover effect card - saat mouse hover */
+.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Label di dalam card */
+.result-label {
+  font-size: var(--font-size-small);
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Value (hasil) di dalam card */
+.result-value {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  word-break: break-word;
+  transition: var(--transition-fast);
+}
+
+/* ===== BREAKDOWN SECTION ===== */
+.breakdown-section {
+  background: var(--color-white);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Heading di breakdown section */
+.breakdown-section h2 {
+  font-size: 18px;
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ===== BREAKDOWN TABLE ===== */
+/* 
+  Table untuk tampilkan detail perhitungan
+  Clean & minimal design
+*/
+.breakdown-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Row di table */
+.breakdown-table tbody tr {
+  border-bottom: 1px solid var(--color-light);
+  transition: var(--transition-fast);
+}
+
+/* Row hover effect */
+.breakdown-table tbody tr:hover {
+  background-color: rgba(139, 111, 71, 0.05);
+}
+
+/* Label cell di table */
+.breakdown-label {
+  padding: var(--space-md) var(--space-md) var(--space-md) 0;
+  color: var(--color-secondary);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Value cell di table */
+.breakdown-value {
+  padding: var(--space-md);
+  text-align: right;
+  color: var(--color-dark);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-body);
+}
+
+/* Highlight row untuk total */
+.breakdown-highlight {
+  background-color: rgba(212, 165, 116, 0.2);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ===== BUTTON SECTION ===== */
+.button-section {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+/* ===== RESET BUTTON ===== */
+/* 
+  Button styling dengan gradient & hover effect
+  Cursor pointer: indicate clickable
+*/
+.btn-reset {
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 200px;
+}
+
+/* Hover state button */
+.btn-reset:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Active state button (saat diklik) */
+.btn-reset:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Focus state button (accessibility) */
+.btn-reset:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* 
+  Media query untuk mobile devices
+  Menyesuaikan layout & ukuran font untuk screen kecil
+*/
+@media (max-width: 600px) {
+  /* Kurangi padding di mobile */
+  body {
+    padding: var(--space-sm);
+  }
+
+  /* Kurangi font size heading di mobile */
+  .title {
+    font-size: 24px;
+  }
+
+  /* Sesuaikan spacing untuk mobile */
+  .container {
+    gap: var(--space-md);
+  }
+
+  /* Result section jadi single column di mobile */
+  .result-section {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reduce padding di form section mobile */
+  .form-section,
+  .breakdown-section {
+    padding: var(--space-md);
+  }
+
+  /* Button lebih lebar di mobile */
+  .btn-reset {
+    min-width: 100%;
+  }
+
+  /* Adjust result value font size mobile */
+  .result-value {
+    font-size: 24px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+/* 
+  Focus visible untuk keyboard navigation
+  Important untuk accessibility
+*/
+button:focus-visible,
+input:focus-visible,
+label:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Reduce motion untuk users yang prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
